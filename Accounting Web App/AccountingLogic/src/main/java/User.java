@@ -30,18 +30,16 @@ public class User {
         return FirstName;
     }
 
-    public String setFirstName(String FN) {
+    public void setFirstName(String FN) {
         FirstName = FN;
-        return "First name set successfully!";
     }
 
     public String getLastName() {
         return LastName;
     }
 
-    public String setLastName(String LN) {
+    public void setLastName(String LN) {
         LastName = LN;
-        return "Last name set successfully!";
     }
 
     // Getters and Setters for username
@@ -56,8 +54,8 @@ public class User {
 
         Username = (FirstName.substring(0, 1).toLowerCase() +
                     LastName.toLowerCase() +
-                    String.format("%02d", (creationDate.getMonth() + 1)) +
-                    (creationDate.getYear() - Math.floor(creationDate.getYear()))
+                    String.format("%02d", (creationDate.getMonth()) + 1) +  // getMonth range is 0 - 11
+                   (creationDate.getYear() % 1000)
         );
     }
 
@@ -70,32 +68,23 @@ public class User {
 
          Password used in the past cannot be used when password is reset */
 
-        String[] AllowedSpecialCharacters = {"!", "@", "#", "$", "%", "^", "&", "*", "\"", ":"};
-        // This list was not explicitly defined in the instructions
-        // As such this list can change
-
-        String[] Letters = {"A", "B", "C", "D", "E", "F", "G",
-                "H", "I", "J", "K", "L", "M", "N", "O", "P",
-                "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-
-        String[] Numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
-
-        if(ProposedPassword.length() > 8) {
+        if(ProposedPassword.length() < 8) {
             ErrorMessage = "Password length is too short!";
             IsError = true;
         }
-        else if(!Letters.toString().contains(ProposedPassword.substring(0, 1).toUpperCase())) {
+        else if((ProposedPassword.toUpperCase().charAt(0) < 65) || (ProposedPassword.toUpperCase().charAt(0) > 90)) {
             ErrorMessage = "Password must start with a letter!";
             IsError = true;
         }
-        else if(!ProposedPassword.contains(Numbers.toString())) {
+        else if(!CheckForNumbers(ProposedPassword)) {
             ErrorMessage = "Password must contain a number!";
             IsError = true;
         }
-        else if(!ProposedPassword.contains(AllowedSpecialCharacters.toString())) {
+        else if(!CheckForSpecialCharacters(ProposedPassword)) {
             ErrorMessage = "Password must contain a special character!";
             IsError = true;
         }
+
 
         if(IsError) {
             return ErrorMessage;
@@ -108,6 +97,45 @@ public class User {
     public String ResetPassword() {
         Password = "";
         return "Password has been reset successfully!";
+    }
+
+    // Supplementary Methods
+    private boolean CheckForNumbers(String Password) {
+
+        boolean Result = false;
+
+        String[] Numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        // This list was not explicitly defined in the instructions
+        // As such this list is subject to change
+
+        for(int i = 0; i < Password.length(); i++) {
+            for (String number : Numbers) {
+                if (Password.charAt(i) == number.charAt(0)) {
+                    Result = true;
+                    break;
+                }
+            }
+        }
+        return Result;
+    }
+
+    private boolean CheckForSpecialCharacters(String Password) {
+
+        boolean Result = false;
+
+        String[] AllowedSpecialCharacters = {"!", "@", "#", "$", "%", "^", "&", "*", "\"", ":"};
+        // This list was not explicitly defined in the instructions
+        // As such this list is subject to change
+
+        for(int i = 0; i < Password.length(); i++) {
+            for (String allowedSpecialCharacter : AllowedSpecialCharacters) {
+                if (Password.charAt(i) == allowedSpecialCharacter.charAt(0)) {
+                    Result = true;
+                    break;
+                }
+            }
+        }
+        return Result;
     }
 
 }

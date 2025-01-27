@@ -14,8 +14,8 @@ public class Login {
     try (Connection connection = DriverManager.getConnection(dbUrl)) {
       String query = "SELECT * FROM users WHERE username = ? AND password = ?";
       try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-        preparedStatement.setString(1, inputUsername);
-        preparedStatement.setString(2, inputPassword);
+        //preparedStatement.setString(1, inputUsername);
+        //preparedStatement.setString(2, inputPassword);
 
         try (ResultSet resultSet = preparedStatement.executeQuery()) {
           if (resultSet.next()) {

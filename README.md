@@ -13,12 +13,11 @@ This repository contains all the code, documentation, and other resources relate
 
 ## Team Members
 
-| Name | Project Role |
-| ---- | ------------ |
-| [Ian Riggins](https://github.com/Riggs275)          | |
-| [Evan Valencia](https://github.com/Evalenc6)        | |
-| [Alejandro Cervantes](https://github.com/Acervan5)  | |
-| [Jeremy Nelson](https://github.com/Jerm24)          | |
+This is a four-person team consisting of:
+- [Ian Riggins](https://github.com/Riggs275)
+- [Evan Valencia](https://github.com/Evalenc6)
+- [Alejandro Cervantes](https://github.com/Acervan5)
+- [Jeremy Nelson](https://github.com/Jerm24)
 
 ## Project Overview
 
