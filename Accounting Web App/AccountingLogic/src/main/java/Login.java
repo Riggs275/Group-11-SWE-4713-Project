@@ -6,7 +6,7 @@ public class Login {
 
   // Constructor to initialize the database connection URL
   public Login(String url) {
-      url = dbUrl;
+      dbUrl = url;
   }
 
   // Method for logging in if username and password are correct
@@ -65,5 +65,17 @@ public class Login {
       e.printStackTrace();
     }
     return "error";
+  }
+  
+  // Method to handle Forgot Password functionality
+  public String handleForgotPassword(String userId, String email, String securityAnswer) {
+    ForgotPassword forgotPassword = new ForgotPassword(dbUrl);
+    return forgotPassword.verifyIdentity(userId, email, securityAnswer);
+  }
+
+  // Method to handle password reset
+  public String resetPassword(String userId, String newPassword) {
+    ForgotPassword forgotPassword = new ForgotPassword(dbUrl);
+    return forgotPassword.resetPassword(userId, newPassword);
   }
 }
