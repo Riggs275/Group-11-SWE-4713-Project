@@ -99,6 +99,18 @@ public class ForgotPassword {
 
     // Ensure attempted new password adheres to password policy
     private boolean isValidPassword(String password) {
+        if (password.length() < 8) {
+            return false;
+        }
+        if (!password.matches(".*[a-zA-Z].*")) {
+            return false; // Must contain a letter
+        }
+        if (!password.matches(".*\\d.*")) {
+            return false; // Must contain a number
+        }
+        if (!password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+            return false; // Must contain a special character
+        }
         return true;
     }
 }
