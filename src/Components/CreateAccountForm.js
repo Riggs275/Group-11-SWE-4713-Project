@@ -1,8 +1,7 @@
 import {useState} from "react";
 import {OrLines} from "./BackgroundHeader";
-import {SignInButton, SignInButtonToSignPage} from "./Buttons";
+import {SignInButtonToSignPage} from "./Buttons";
 import {RequestButton} from "./Buttons";
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
 
 export function TheNameForm(){
     const [formData, setFormData] = useState({firstName: "", lastName: "", DOB: ""});
