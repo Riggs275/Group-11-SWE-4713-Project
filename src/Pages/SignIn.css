@@ -1,0 +1,100 @@
+html, body, #root {
+    height: 100%;
+}
+
+
+.App {
+    background: linear-gradient(
+            to bottom right,
+            rgb(107, 145, 200) 0%,
+            rgb(77, 79, 138) 40%,
+            rgb(62, 66, 108) 62%,
+            rgb(95, 44, 97) 100%
+    );
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    height: 100%;
+}
+.App-header{
+    background-color: #ECECEC;
+    color: black;
+    width: fit-content;
+    min-height: 55vh;
+    min-width: 20vw;
+    max-width: 50vw;
+    padding: 5% 10% 10%;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: x-large;
+}
+.Create-Account{
+    padding-bottom: 50px;
+    text-align: center;
+    font-size: xx-large;
+    text-decoration: underline 2px;
+    text-underline-style: single;
+}
+.signInButton{
+    text-align: center;
+    background-color: lightgreen;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.signInButton:hover{
+    background-color: greenyellow;
+}
+.Box{
+    width: 25vw;
+    height: 3vh;
+    font-size: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.TextBoxes{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.submitContainer{
+    text-align: center;
+    margin-top: 20px;
+}
+.App-link {
+    color: #61dafb;
+}
+.Lines {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+.Lines hr{
+    flex-grow: 1;
+    border: none;
+    height: 1px;
+    background-color: black;
+    margin: 0 10px;
+}
+.Lines span{
+    white-space: nowrap;
+}
+
+.ForgotPass{
+    font-size: 12px;
+    align-items: center;
+    text-align: left;
+    font-weight: bold;
+}
+.ForgotPass:Link{
+    color: #6585c1;
+}
+.ForgotPass:Hover{
+    color: #e452bb;
+}
