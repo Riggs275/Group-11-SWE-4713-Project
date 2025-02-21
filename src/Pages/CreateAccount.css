@@ -50,13 +50,19 @@ html, body, #root {
 .RequestButton:hover{
   background-color: #55c2da;
 }
-.TextBoxes{
+
+.Box{
   width: 25vw;
   height: 3vh;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 15px;
   border-radius: 5px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.CreateTextBox{
+  font-size: 25px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+
 }
 
 .buttonContainer{

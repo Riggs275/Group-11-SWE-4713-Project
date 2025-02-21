@@ -16,23 +16,29 @@ export function TheNameForm(){
     return(
         <form onSubmit={handleSubmit}>
             <div>
-                <label>
+                <div className={"CreateTextBox"}>
+                <label >
                     First Name:
                     <br/>
-                    <input className={"TextBoxes"} type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
+                    <input type="text" className={"Box"} name="firstName" value={formData.firstName} onChange={handleChange} />
                 </label>
-                <br/>
-                <label >
+                </div>
+                    <br/>
+                <div className={"CreateTextBox"}>
+                <label>
                     Last Name:
                     <br/>
-                    <input type="text" className={"TextBoxes"} name="lastName" value={formData.lastName} onChange={handleChange} />
+                    <input type="text" className={"Box"} name="lastName" value={formData.lastName} onChange={handleChange} />
                 </label>
-                <br/>
-                <label >
+                </div>
+                    <br/>
+                <div className={"CreateTextBox"}>
+                <label>
                     Date of Birth:
                     <br/>
-                    <input type={"date"} className={"TextBoxes"} name={"DOB"} value={formData.DOB} onChange={handleChange}/>
+                    <input type={"date"} className={"Box"} name={"DOB"} value={formData.DOB} onChange={handleChange}/>
                 </label>
+                </div>
                 <br/>
             </div>
 

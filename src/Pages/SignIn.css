@@ -50,16 +50,18 @@ html, body, #root {
 .signInButton:hover{
     background-color: greenyellow;
 }
+
 .Box{
     width: 25vw;
     height: 3vh;
-    font-size: 20px;
-    margin-top: 10px;
+    margin-top: 5px;
     border-radius: 5px;
 }
 .TextBoxes{
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 20px;
+    font-size: 25px;
+
 }
 
 .submitContainer{
