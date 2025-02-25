@@ -1,15 +1,21 @@
 import {useState} from "react";
 import {SecurityResetPass} from "./Buttons";
+import { checkSecurityQ } from "./api";
+import { useNavigate } from "react-router-dom";
 
 export function SecurityQForm(){
     const [formData, setFormData] = useState({sec1: "", sec2: "", sec3: ""});
-
+    const navigate = useNavigate();
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData);
+        const result = await checkSecurityQ(formData);
+        if (result.success){
+            navigate('/setpassword')
+        }
     };
     return(
         <form onSubmit={handleSubmit}>

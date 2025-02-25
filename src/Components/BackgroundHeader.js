@@ -10,6 +10,7 @@ export function CreateAccountHeader({children}){
             <div className={"DivApp-Header"}>
                 <header className="App-header">
                     <header className={"Create-Account"}>Create Account</header>
+                    <ErrorParagraph/>
                     {children}
                 </header>
             </div>
@@ -28,6 +29,8 @@ export function SignInHeader({children}){
             <div className={"DivApp-Header"}>
                 <header className="App-header">
                     <header className={"Create-Account"}>Sign In</header>
+                    <ErrorParagraph/>
+
                     {children}
                 </header>
             </div>
@@ -46,6 +49,8 @@ export function SecurityQHeader({children}){
             <div className={"DivApp-Header"}>
                 <header className="App-header">
                     <header className={"Create-Account"}>Security Questions</header>
+                    <ErrorParagraph/>
+
                     {children}
                 </header>
             </div>
@@ -65,10 +70,10 @@ export function ResetPasswordHeader({children}){
                 
                 <header className="App-header">
                     <header className={"Create-Account"}>Reset Password</header>
+                    <ErrorParagraph/>
                     {children}
                 </header>
             </div>
-
         </div>
 
     );
@@ -84,10 +89,10 @@ export function ForgotPasswordHeader({children}){
                 
                 <header className="App-header">
                     <header className={"Create-Account"}>Forgot Password</header>
+                    <ErrorParagraph/>
                     {children}
                 </header>
             </div>
-
         </div>
 
     );
@@ -104,3 +109,9 @@ export function OrLines(){
 }
 
 
+
+export function ErrorParagraph(){
+    return(
+        <p className='errorField'>Error Header</p>
+    );
+}

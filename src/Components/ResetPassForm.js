@@ -1,15 +1,22 @@
 import {useState} from "react";
 import { SetPassword } from "./Buttons";
+import { setNewPassword } from "./api";
+import { useNavigate } from "react-router-dom";
 export function ResetPassForm(){
     const [formData, setFormData] = useState({newPassword: "", retype: "", DOB: ""});
-
+    const navigate = useNavigate();
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData);
+        const result = await setNewPassword(formData);
+        if(result.success){
+            navigate('/securityq')
+        }
     };
+
     return(
         <form onSubmit={handleSubmit}>
             <div>
@@ -18,7 +25,7 @@ export function ResetPassForm(){
                 <label >
                     New Password:
                     <br/>
-                    <input type="text" className={"Box"} name="newPassword" value={formData.newPassword} onChange={handleChange} />
+                    <input type="password" className={"Box"} name="newPassword" value={formData.newPassword} onChange={handleChange} />
                 </label>
                 </div>
                     <br/>
@@ -26,7 +33,7 @@ export function ResetPassForm(){
                 <label>
                     Retype New Password:
                     <br/>
-                    <input type="text" className={"Box"} name="retype" value={formData.retype} onChange={handleChange} />
+                    <input type="password" className={"Box"} name="retype" value={formData.retype} onChange={handleChange} />
                 </label>
                 </div>
                 <br/>

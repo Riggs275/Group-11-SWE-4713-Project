@@ -1,17 +1,24 @@
 import {useState} from "react";
 import {OrLines} from "./BackgroundHeader";
-import {ForgotPassword} from "./Buttons"
-import {RequestButtonToRequestPage, SignInButton} from "./Buttons";
+import {ForgotPassword, SignInPost} from "./Buttons"
+import {RequestButtonToRequestPage} from "./Buttons";
+import { loginUserRequest } from "./api";
+import { useNavigate } from "react-router-dom";
 
 export function LoginFom(){
     const [formData, setFormData] = useState({userID: "", password: ""});
-
+    const navigate = useNavigate();
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-    const handleSubmit = (e) => {
+    const handleSubmit =  async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData);
+        const result = await loginUserRequest(formData);
+        //Should move them to the admin or accountant page but not coded yet
+        if(result.success){
+            navigate('/forgotpass')
+        }
     };
     return(
         <form onSubmit={handleSubmit}>
@@ -28,13 +35,13 @@ export function LoginFom(){
                     <label>
                     Password:
                     <br/>
-                    <input type="text" name="password" className={"Box"} value={formData.password} onChange={handleChange} />
+                    <input type="password" name="password" className={"Box"} value={formData.password} onChange={handleChange} />
                     <ForgotPassword/>
                 </label>
                 </div>
                 <br/>
             </div>
-            <SignInButton/>
+            <SignInPost/>
             <OrLines/>
             <RequestButtonToRequestPage/>
         </form>

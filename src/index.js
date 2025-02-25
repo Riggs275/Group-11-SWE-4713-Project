@@ -15,7 +15,7 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path="/createAccount" element={<CreateAccount/>} />
+                <Route path="/createaccount" element={<CreateAccount/>} />
                 <Route path="/signin" element={<SignIn/>} />
                 <Route path="/forgotpass" element={<ForgotPass/>} />
                 <Route path="/securityQ" element={<SecurityQ/>} />

@@ -1,17 +1,26 @@
 import {useState} from "react";
 import {OrLines} from "./BackgroundHeader";
 import {RequestButtonToRequestPage, SignInButton, ResetPassButton} from "./Buttons";
+import {forgotAccountRequest } from "./api";
+import { useNavigate } from "react-router-dom";
 
 export function ForgotPassForm(){
     const [formData, setFormData] = useState({email: "", userID: ""});
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData);
+        const result = await forgotAccountRequest(formData);
+        if (result.success){
+            navigate('/securityQ')
+        }
     };
+
     return(
         <form onSubmit={handleSubmit}>
             <div>
