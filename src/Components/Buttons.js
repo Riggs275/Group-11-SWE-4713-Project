@@ -1,15 +1,6 @@
 import {Link} from 'react-router-dom'
 
-export function SignInButtonToSignPage(){
-    return(
-        <div className={"submitContainer"}>
-            <Link to={"/signin"}>
-            <button className={"signInButton"}>Sign In</button>
-            </Link>
-        </div>
-    );
-}
-
+//Sends user to the request page
 export function RequestButtonToRequestPage(){
     return(
         <div className={"buttonContainer"}>
@@ -19,7 +10,7 @@ export function RequestButtonToRequestPage(){
         </div>
     );
 }
-
+//Sends user to the sign in page
 export function SignInButton(){
     return(
         <div className={"submitContainer"}>

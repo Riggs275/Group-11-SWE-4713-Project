@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {OrLines} from "./BackgroundHeader";
-import {SignInButtonToSignPage} from "./Buttons";
+import {SignInButton} from "./Buttons";
 import {RequestButton} from "./Buttons";
 import {createAccountRequest } from "./api";
 import { useNavigate } from "react-router-dom";
@@ -58,7 +58,7 @@ export function TheNameForm(){
 
             <RequestButton/>
             <OrLines/>
-            <SignInButtonToSignPage/>
+            <SignInButton/>
         </form>
     );
 }
