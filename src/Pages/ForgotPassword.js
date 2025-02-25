@@ -4,7 +4,7 @@ import { ForgotPassForm } from '../Components/ForgotPassForm';
 function ForgotPass(){
     return(
         <ForgotPasswordHeader>
-            <ForgotPass/>
+            <ForgotPassForm/>
         </ForgotPasswordHeader>
     );
 }

@@ -7,18 +7,22 @@ import reportWebVitals from './reportWebVitals';
 import CreateAccount from "./Pages/CreateAccount";
 import SignIn from "./Pages/SingIn";
 import ForgotPass from './Pages/ForgotPassword';
+import SecurityQ from './Pages/SecurityQ';
+import ResetPassword from './Pages/ResetPassword';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    /*<React.StrictMode>
+    <React.StrictMode>
         <BrowserRouter>
             <Routes>
                 <Route path="/createAccount" element={<CreateAccount/>} />
                 <Route path="/signin" element={<SignIn/>} />
+                <Route path="/forgotpass" element={<ForgotPass/>} />
+                <Route path="/securityQ" element={<SecurityQ/>} />
+                <Route path="/setpassword" element={<ResetPassword/>}/>
             </Routes>
         </BrowserRouter>
-    </React.StrictMode>*/  
-    ForgotPass()
+    </React.StrictMode> 
 
 );
 

@@ -1,10 +1,10 @@
 import {useState} from "react";
 import {OrLines} from "./BackgroundHeader";
-import {ForgotPassword} from "./BackgroundHeader"
+import {ForgotPassword} from "./Buttons"
 import {RequestButtonToRequestPage, SignInButton} from "./Buttons";
 
 export function LoginFom(){
-    const [formData, setFormData] = useState({firstName: "", lastName: "", DOB: ""});
+    const [formData, setFormData] = useState({userID: "", password: ""});
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,15 +20,15 @@ export function LoginFom(){
                 <label >
                     User ID:
                     <br/>
-                    <input type="text" name="firstName" className={"Box"} value={formData.firstName} onChange={handleChange} />
+                    <input type="text" name="userID" className={"Box"} value={formData.userID} onChange={handleChange} />
                 </label>
                 </div>
                     <br/>
-                <div>
-                <label className={"TextBoxes"}>
+                <div className={"TextBoxes"}>
+                    <label>
                     Password:
                     <br/>
-                    <input type="text" name="lastName" className={"Box"} value={formData.lastName} onChange={handleChange} />
+                    <input type="text" name="password" className={"Box"} value={formData.password} onChange={handleChange} />
                     <ForgotPassword/>
                 </label>
                 </div>

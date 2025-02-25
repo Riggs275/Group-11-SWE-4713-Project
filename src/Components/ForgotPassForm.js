@@ -1,10 +1,9 @@
 import {useState} from "react";
 import {OrLines} from "./BackgroundHeader";
-import {ForgotPassword} from "./BackgroundHeader"
-import {RequestButtonToRequestPage, SignInButton} from "./Buttons";
+import {RequestButtonToRequestPage, SignInButton, ResetPassButton} from "./Buttons";
 
 export function ForgotPassForm(){
-    const [formData, setFormData] = useState({firstName: "", lastName: "", DOB: ""});
+    const [formData, setFormData] = useState({email: "", userID: ""});
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,25 +17,29 @@ export function ForgotPassForm(){
             <div>
                 <div className={"TextBoxes"}>
                 <label >
-                    User ID:
+                    Email:
                     <br/>
-                    <input type="text" name="firstName" className={"Box"} value={formData.firstName} onChange={handleChange} />
+                    <input type="text" name="email" className={"Box"} value={formData.email} onChange={handleChange} />
                 </label>
                 </div>
                     <br/>
-                <div>
-                <label className={"TextBoxes"}>
-                    Password:
+                <div className={"TextBoxes"}>
+                <label>
+                    User ID:
                     <br/>
-                    <input type="text" name="lastName" className={"Box"} value={formData.lastName} onChange={handleChange} />
-                    <ForgotPassword/>
+                    <input type="text" name="userID" className={"Box"} value={formData.userID} onChange={handleChange} />
                 </label>
                 </div>
                 <br/>
             </div>
-            <SignInButton/>
-            <OrLines/>
-            <RequestButtonToRequestPage/>
+            <ResetPassButton/>
+            <OrLines/>    
+            <div style={{ display: "flex",justifyContent: "center", gap:"25px"}}>
+                <SignInButton/>
+                <RequestButtonToRequestPage/>
+            </div>
+        
+            
         </form>
     );
 }
