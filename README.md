@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # KSU SWE-4713 Group 11 Semester Project
 
 This repository contains all the code, documentation, and other resources related to Group 11's Software Application Domain Semester Project.
