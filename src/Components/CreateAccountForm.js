@@ -16,7 +16,7 @@ export function TheNameForm(){
         console.log("Form Data:", formData);
         const result = await createAccountRequest(formData);
         if (result.success){
-            navigate('/signin')
+            navigate('/signin', {state: result.successMessage})
         }
     };
     return(

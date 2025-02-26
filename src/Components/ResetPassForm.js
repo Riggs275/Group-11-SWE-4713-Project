@@ -1,10 +1,14 @@
 import {useState} from "react";
 import { SetPassword } from "./Buttons";
 import { setNewPassword } from "./api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 export function ResetPassForm(){
     const [formData, setFormData] = useState({newPassword: "", retype: "", DOB: ""});
     const navigate = useNavigate();
+    const location = useLocation();
+    const userID = location.state;
+    document.getElementById('welcomeUser').innerText = `Hey ${userID} in your new password in the boxes below`
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -13,14 +17,14 @@ export function ResetPassForm(){
         console.log("Form Data:", formData);
         const result = await setNewPassword(formData);
         if(result.success){
-            navigate('/securityq')
+            navigate('/signin', {state: result.successMessage})
         }
     };
 
     return(
         <form onSubmit={handleSubmit}>
             <div>
-                <p className="text">Hey UserID type in your new password in the boxes below</p>
+                <p className="text" id="welcomeUser">Hey UserID type in your new password in the boxes below</p>
                 <div className={"CreateTextBox"}>
                 <label >
                     New Password:

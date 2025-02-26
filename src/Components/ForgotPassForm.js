@@ -11,13 +11,13 @@ export function ForgotPassForm(){
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData);
         const result = await forgotAccountRequest(formData);
         if (result.success){
-            navigate('/securityQ')
+            navigate('/securityQ', {state: formData.userID})
         }
     };
 

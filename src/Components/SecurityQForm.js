@@ -1,11 +1,15 @@
 import {useState} from "react";
 import {SecurityResetPass} from "./Buttons";
 import { checkSecurityQ } from "./api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export function SecurityQForm(){
     const [formData, setFormData] = useState({sec1: "", sec2: "", sec3: ""});
     const navigate = useNavigate();
+    const location = useLocation();
+    const userID = location.state;
+    document.getElementById('welcomeUser').innerText = `Hey ${userID} we found your account answer these security questions to reset your password`
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -14,13 +18,13 @@ export function SecurityQForm(){
         console.log("Form Data:", formData);
         const result = await checkSecurityQ(formData);
         if (result.success){
-            navigate('/setpassword')
+            navigate('/setpassword', {state: userID})
         }
     };
     return(
         <form onSubmit={handleSubmit}>
             <div>
-                <p className={"text"}>Hey UserID we found your account answer these security questions to reset your password</p>
+                <p className={"text"} id="welcomeUser">Hey UserID we found your account answer these security questions to reset your password</p>
                 <div className={"TextBoxes"}>
                 <label >
                     Security Question 1:

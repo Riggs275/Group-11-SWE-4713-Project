@@ -13,8 +13,7 @@ export const loginUserRequest = async(formData) =>{
         return { success: true };
     } catch (error){
         console.error("Error", error)
-        return { success: false };
-
+        return { success: false, errMessage: error };
     }
 }
 
@@ -30,7 +29,7 @@ export const forgotAccountRequest = async (formData) => {
         return { success: true };
     } catch (error) {
         console.error("Error:", error);
-        return {sucess: false, err: error};
+        return { success: false, errMessage: error };
     }
 };
 
@@ -44,11 +43,11 @@ export const createAccountRequest = async (formData) => {
         });
         if (!response.ok) throw new Error("Failed to send the request to admin");
         console.log("We successfully sent the request to the admin");
-        return { success: true};
+        return { success: true, response: response, successMessage: "User ID created sucessfully"};
 
     } catch(error) { 
         console.error("Error:",error);
-        return { success: false };
+        return { success: false, errMessage: error };
 
     }
 }
@@ -62,12 +61,11 @@ export const setNewPassword=async (formData) =>{
         });
         if(!response.ok) throw new Error("Failed to set new password for this account");
         console.log("we have successfully changed the password for this account");
-        return { success: true };
+        return { success: true, response: response, successMessage: "New password set sucessfully"};
 
     } catch(error){
         console.error("Error", error);
-        return { success: false };
-
+        return { success: false, errMessage: error };
     }
 }
 
@@ -83,8 +81,7 @@ export const checkSecurityQ=async (formData)=>{
 
     } catch(error){
         console.error("Error", error);
-        return { success: false };
-
+        return { success: false, errMessage: error };
     }
 }
 
