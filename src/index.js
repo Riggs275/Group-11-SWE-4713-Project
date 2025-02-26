@@ -9,6 +9,8 @@ import SignIn from "./Pages/SingIn";
 import ForgotPass from './Pages/ForgotPassword';
 import SecurityQ from './Pages/SecurityQ';
 import ResetPassword from './Pages/ResetPassword';
+import AdminHomePage from './Pages/AdminHomePage';
+import AdminUsers from './Pages/AdminUsers';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +22,8 @@ root.render(
                 <Route path="/forgotpass" element={<ForgotPass/>} />
                 <Route path="/securityQ" element={<SecurityQ/>} />
                 <Route path="/setpassword" element={<ResetPassword/>}/>
+                <Route path="/adminhome" element={<AdminHomePage/>}/>
+                <Route path="/adminusers" element={<AdminUsers/>}/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode> 

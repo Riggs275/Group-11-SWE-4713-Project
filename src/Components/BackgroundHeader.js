@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import logo from '../imgs/Icon.png'
+import NavBar from './NavBar';
 
 export function CreateAccountHeader({children}){
     return(
@@ -97,6 +98,32 @@ export function ForgotPasswordHeader({children}){
 
     );
 }
+
+export function AdminHomeHeader({children}){
+    return(
+        
+        <div className='Home'>
+            <NavBar/>
+            <div className='PageContent'>
+                <p>Current User Info</p>
+            </div>
+        </div>
+    );
+}
+
+
+export function AdminUserHeader({children}){
+    return(
+        
+        <div className='Home'>
+            <NavBar/>
+            <div className='PageContent'>
+                <p>User Tables</p>
+            </div>
+        </div>
+    );
+}
+
 
 export function OrLines(){
     return(
