@@ -75,3 +75,13 @@ export function SetPassword(){
     </div>
     );
 }
+
+//Lets admin create a new user
+export function CreateNewUser(){
+    return(
+        <div className='createUserContainer'>
+            <button type='submit' className='createUserButton'>Create User</button>
+        </div>
+    );
+
+}

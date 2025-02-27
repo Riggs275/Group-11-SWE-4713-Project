@@ -1,0 +1,30 @@
+[
+    {
+      "UserNameID": 1,
+      "FirstName": "John",
+      "LastName": "Doe",
+      "DOB": "1990-05-15",
+      "Address": "303 Chance"
+    },
+    {
+        "UserNameID": 2,
+        "FirstName": "John",
+        "LastName": "Doe",
+        "DOB": "1990-05-15",
+        "Address": "303 Chance"
+      },
+      {
+        "UserNameID": 3,
+        "FirstName": "John",
+        "LastName": "Doe",
+        "DOB": "1990-05-15",
+        "Address": "303 Chance"
+      },
+      {
+        "UserNameID": 4,
+        "FirstName": "John",
+        "LastName": "Doe",
+        "DOB": "1990-05-15",
+        "Address": "303 Chance"
+      }
+]
