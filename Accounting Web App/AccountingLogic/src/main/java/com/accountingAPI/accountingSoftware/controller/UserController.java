@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accountingAPI.accountingSoftware.model.User;
 import com.accountingAPI.accountingSoftware.service.UserService;
 
 @RestController
-@RequestMapping("/api")  // Base URL for all endpoints in this controller
-@CrossOrigin(origins = "http://localhost:3000") // Allow frontend to access backend
+@RequestMapping("login")  // Base URL for all endpoints in this controller
+@CrossOrigin(origins = "http://localhost:3001") // Allow frontend to access backend
 public class UserController {
 
     @Autowired
@@ -25,7 +24,7 @@ public class UserController {
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> loginData) {
         return userService.loginUser(loginData);
     }
-
+/*
     @PostMapping("/forgotAccountRequest")
     public ResponseEntity<?> forgotAccount(@RequestBody Map<String, String> forgotData) {
         return userService.forgotAccount(forgotData);
@@ -44,5 +43,5 @@ public class UserController {
     @PostMapping("/checkSecurityQ")
     public ResponseEntity<?> checkSecurityQuestion(@RequestBody Map<String, String> securityData) {
         return userService.checkSecurityQuestion(securityData);
-    }
+    }*/
 }

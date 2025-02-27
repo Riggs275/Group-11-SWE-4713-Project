@@ -1,2 +1,10 @@
+Login.class
+com/accountingAPI/accountingSoftware/repository/UserRepository.class
 com/accountingAPI/accountingSoftware/controller/UserController.class
-com/accountingAPI/accountingSoftware/service/AccountingAPI.class
+com/accountingAPI/accountingSoftware/service/UserService.class
+com/accountingAPI/accountingSoftware/config/CorsConfig.class
+User.class
+com/accountingAPI/accountingSoftware/model/Passwords.class
+com/accountingAPI/accountingSoftware/AccountingAPI.class
+ForgotPassword.class
+com/accountingAPI/accountingSoftware/model/User.class

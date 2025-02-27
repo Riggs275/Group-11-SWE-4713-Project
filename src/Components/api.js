@@ -3,7 +3,7 @@ const API_BASE_URL = "http://localhost:8080";
 
 export const loginUserRequest = async(formData) =>{
     try{
-        const response = await fetch(`${API_BASE_URL}/loginUserRequest`, {
+        const response = await fetch(`${API_BASE_URL}/login/loginUserRequest`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formData),

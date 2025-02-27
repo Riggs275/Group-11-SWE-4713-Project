@@ -1,6 +1,7 @@
 package com.accountingAPI.accountingSoftware.service;
 
 import com.accountingAPI.accountingSoftware.model.User;
+import com.accountingAPI.accountingSoftware.model.Passwords;
 import com.accountingAPI.accountingSoftware.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +17,21 @@ public class UserService {
     private UserRepository userRepository;
 
     public ResponseEntity<?> loginUser(Map<String, String> loginData) {
-        Optional<User> user = userRepository.findByUsername(loginData.get("username"));
+        Optional<User> user = userRepository.findByUserID(loginData.get("username"));
     //Password ref should use the userrepository to get the table data from it.
-        if (user.isPresent() && user.get().getPassRef().equals(loginData.get("password"))) {
-            return ResponseEntity.ok().body(Map.of("message", "Login successful"));
+        if (user.isPresent()) {
+            Optional<Passwords> pass = userRepository.findPasswordByUserId(user.get().getPassRef());
+            if(pass.isPresent()){
+                return ResponseEntity.ok().body(Map.of("message", "Login successful"));
+            }else{
+                return ResponseEntity.badRequest().body(Map.of("error", "Invalid credentials"));
+            }
         } else {
             return ResponseEntity.badRequest().body(Map.of("error", "Invalid credentials"));
         }
     }
 
-    public ResponseEntity<?> forgotAccount(Map<String, String> forgotData) {
+    /*public ResponseEntity<?> forgotAccount(Map<String, String> forgotData) {
         Optional<User> user = userRepository.findByEmail(forgotData.get("email"));
 
         if (user.isPresent()) {
@@ -64,5 +70,5 @@ public class UserService {
         } else {
             return ResponseEntity.badRequest().body(Map.of("error", "Incorrect security answer"));
         }
-    }
+    }*/
 }

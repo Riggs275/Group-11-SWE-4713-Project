@@ -16,7 +16,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "User") // Match your actual database table name
+@Table(name = "USERS") // Match your actual database table name
 @Getter
 @Setter
 @NoArgsConstructor
@@ -65,11 +65,11 @@ public class User {
     @Column(name = "DOB")
     @Temporal(TemporalType.DATE)
     private Date dob;
-    public String getDOB(){
+    public Date getDOB(){
         return dob;
     }
     public void setDOB(Date newDob){
-        passwordRef = newPassRef;
+        dob = newDob;
     }
 
     @Column(name = "DateAdded", updatable = false)
