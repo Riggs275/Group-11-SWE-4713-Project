@@ -1,14 +1,15 @@
 package com.accountingAPI.accountingSoftware.service;
 
-import com.accountingAPI.accountingSoftware.model.User;
-import com.accountingAPI.accountingSoftware.model.Passwords;
-import com.accountingAPI.accountingSoftware.repository.UserRepository;
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-import java.util.Optional;
+import com.accountingAPI.accountingSoftware.model.Passwords;
+import com.accountingAPI.accountingSoftware.model.User;
+import com.accountingAPI.accountingSoftware.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -17,10 +18,17 @@ public class UserService {
     private UserRepository userRepository;
 
     public ResponseEntity<?> loginUser(Map<String, String> loginData) {
-        Optional<User> user = userRepository.findByUserID(loginData.get("username"));
+        String userNameid = loginData.get("userID");
+        String sentPassword = loginData.get("password");
+        Optional<User> user = userRepository.findByUserID(userNameid);
+        System.out.println("Received user_nameid: " + userNameid);
+        System.out.println("Recieved password: " + sentPassword);
+        System.out.print("USER" + user.toString());
     //Password ref should use the userrepository to get the table data from it.
         if (user.isPresent()) {
             Optional<Passwords> pass = userRepository.findPasswordByUserId(user.get().getPassRef());
+            System.out.print(pass.toString());
+
             if(pass.isPresent()){
                 return ResponseEntity.ok().body(Map.of("message", "Login successful"));
             }else{
