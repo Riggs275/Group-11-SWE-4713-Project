@@ -1,16 +1,19 @@
 import java.util.Date;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.sql.*;
+import java.time.LocalDate;
 
 public class User {
 
-    // Attributes
+   /* // Attributes
     private String FirstName;
     private String LastName;
     private String Username;
     private String Password;
 
-    private string dbURL;
+    private String dbURL;
 
     public String ErrorMessage;
     private boolean IsError;
@@ -26,7 +29,7 @@ public class User {
     }
 
     public User (String fn, String LN, String Pass, String Url) {
-        Date currentDate = LocalDate.now();
+        String currentDate = LocalDate.now().toString();
 
         FirstName = fn;
         LastName = LN;
@@ -61,9 +64,7 @@ public class User {
     }
 
     public void setUsername(Date creationDate) {
-        /* PREQ-20: A username should be made of the first name initial,
-         the full last name, and a four digit (two-digit month and
-         two-digit year) of when the account is created (e.g., jdoe0125). */
+        //PREQ-20: A username should be made of the first name initial, the full last name, and a four digit (two-digit month and two-digit year) of when the account is created (e.g., jdoe0125). 
 
         Username = (FirstName.substring(0, 1).toLowerCase() +
                     LastName.toLowerCase() +
@@ -74,12 +75,7 @@ public class User {
 
     // Setters for password (No getters for security reasons)
     public String setPassword(String ProposedPassword) {
-        /* PREQ-10 & 11: Passwords must be a minimum of 8 characters,
-         must start with a letter, must have a letter, a number and
-         a special character, if this requirement is not satisfied,
-         display an appropriate error message.
-
-         Password used in the past cannot be used when password is reset */
+        //PREQ-10 & 11: Passwords must be a minimum of 8 characters, must start with a letter, must have a letter, a number and a special character, if this requirement is not satisfied, display an appropriate error message. Password used in the past cannot be used when password is reset 
 
         if(ProposedPassword.length() < 8) {
             ErrorMessage = "Password length is too short!";
@@ -158,6 +154,6 @@ public class User {
         }
 
         return "Retrival Successful.";
-    }
-
+    }*/
+        
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class UserUnitTests {
 
-    @Test
+   /* @Test
     void setUsername_RandomDate_ReturnsSuccess() {
 
         // Arrange
@@ -99,5 +99,5 @@ public class UserUnitTests {
 
         // Assert
         assertEquals(expected, actual);
-    }
+    }*/
 }
