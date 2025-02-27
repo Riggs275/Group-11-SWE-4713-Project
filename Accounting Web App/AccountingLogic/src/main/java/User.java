@@ -1,4 +1,6 @@
 import java.util.Date;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.sql.*;
 
 public class User {
 
@@ -7,6 +9,8 @@ public class User {
     private String LastName;
     private String Username;
     private String Password;
+
+    private string dbURL;
 
     public String ErrorMessage;
     private boolean IsError;
@@ -21,6 +25,15 @@ public class User {
         Password = "";
     }
 
+    public User (String fn, String LN, String Pass, String Url) {
+        Date currentDate = LocalDate.now();
+
+        FirstName = fn;
+        LastName = LN;
+        Username = setUsername(currentDate);
+        Password = setPassword(Pass);
+        dbURL = Url;
+    }
 
 
     // Methods
@@ -72,15 +85,15 @@ public class User {
             ErrorMessage = "Password length is too short!";
             IsError = true;
         }
-        else if((ProposedPassword.toUpperCase().charAt(0) < 65) || (ProposedPassword.toUpperCase().charAt(0) > 90)) {
+        else if(ProposedPassword.matches(".*[a-zA-Z].*")) {
             ErrorMessage = "Password must start with a letter!";
             IsError = true;
         }
-        else if(!CheckForNumbers(ProposedPassword)) {
+        else if(!ProposedPassword.matches(".*[0-9].*")) {
             ErrorMessage = "Password must contain a number!";
             IsError = true;
         }
-        else if(!CheckForSpecialCharacters(ProposedPassword)) {
+        else if(!ProposedPassword.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
             ErrorMessage = "Password must contain a special character!";
             IsError = true;
         }
@@ -99,43 +112,52 @@ public class User {
         return "Password has been reset successfully!";
     }
 
-    // Supplementary Methods
-    private boolean CheckForNumbers(String Password) {
+    public void SendToDatabase() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String userJson = null;
 
-        boolean Result = false;
-
-        String[] Numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        // This list was not explicitly defined in the instructions
-        // As such this list is subject to change
-
-        for(int i = 0; i < Password.length(); i++) {
-            for (String number : Numbers) {
-                if (Password.charAt(i) == number.charAt(0)) {
-                    Result = true;
-                    break;
-                }
-            }
+        try {
+            userJson = objectMapper.writeValueAsString(User);
         }
-        return Result;
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String sql = "INSERT INTO user_data (user_json) VALUES (?)";
+
+        try (Connection conn = DriverManager.getConnection(dbURL, Username, Password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, userJson);
+            int rowsAffected = pstmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    private boolean CheckForSpecialCharacters(String Password) {
+    public string RetrieveFromDatabase() {
+        String SQL = "SELECT * FROM users WHERE username = ? AND password = ?";
 
-        boolean Result = false;
+        try (Connection connection = DriverManager.getConnection(dbURL, Username, Password)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
 
-        String[] AllowedSpecialCharacters = {"!", "@", "#", "$", "%", "^", "&", "*", "\"", ":"};
-        // This list was not explicitly defined in the instructions
-        // As such this list is subject to change
+            ResultSet rs = pstmt.executeQuery()) {
 
-        for(int i = 0; i < Password.length(); i++) {
-            for (String allowedSpecialCharacter : AllowedSpecialCharacters) {
-                if (Password.charAt(i) == allowedSpecialCharacter.charAt(0)) {
-                    Result = true;
-                    break;
+                if (rs.next()) {
+                    String userJson = rs.getString("user_json");
+
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    User retrievedUser = objectMapper.readValue(userJson, User.class);
                 }
             }
         }
-        return Result;
+        catch (SQLException | com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+            return "User was not found.";
+        }
+
+        return "Retrival Successful.";
     }
 
 }
