@@ -1,6 +1,2 @@
-Login.class
-com/accountingAPI/accountingSoftware/repository/UserRepository.class
-User.class
+com/accountingAPI/accountingSoftware/controller/UserController.class
 com/accountingAPI/accountingSoftware/service/AccountingAPI.class
-ForgotPassword.class
-com/accountingAPI/accountingSoftware/model/User.class
