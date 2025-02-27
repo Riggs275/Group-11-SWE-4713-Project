@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class Login {
   // Database connection URL
-  private String dbUrl;
+  /*private String dbUrl;
 
   // Constructor to initialize the database connection URL
   public Login(String url) {
@@ -77,5 +77,5 @@ public class Login {
   public String resetPassword(String userId, String newPassword) {
     ForgotPassword forgotPassword = new ForgotPassword(dbUrl);
     return forgotPassword.resetPassword(userId, newPassword);
-  }
+  }*/
 }

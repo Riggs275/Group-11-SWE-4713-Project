@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class ForgotPassword {
 
-    private String dbUrl;
+/*    private String dbUrl;
 
     // Constructor to initialize the database connection URL
     public ForgotPassword(String url) {
@@ -112,5 +112,5 @@ public class ForgotPassword {
             return false; // Must contain a special character
         }
         return true;
-    }
+    }*/
 }

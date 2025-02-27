@@ -1,12 +1,19 @@
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.sql.*;
+import java.time.LocalDate;
+
 public class User {
 
-    // Attributes
+   /* // Attributes
     private String FirstName;
     private String LastName;
     private String Username;
     private String Password;
+
+    private String dbURL;
 
     public String ErrorMessage;
     private boolean IsError;
@@ -21,6 +28,15 @@ public class User {
         Password = "";
     }
 
+    public User (String fn, String LN, String Pass, String Url) {
+        String currentDate = LocalDate.now().toString();
+
+        FirstName = fn;
+        LastName = LN;
+        Username = setUsername(currentDate);
+        Password = setPassword(Pass);
+        dbURL = Url;
+    }
 
 
     // Methods
@@ -48,9 +64,7 @@ public class User {
     }
 
     public void setUsername(Date creationDate) {
-        /* PREQ-20: A username should be made of the first name initial,
-         the full last name, and a four digit (two-digit month and
-         two-digit year) of when the account is created (e.g., jdoe0125). */
+        //PREQ-20: A username should be made of the first name initial, the full last name, and a four digit (two-digit month and two-digit year) of when the account is created (e.g., jdoe0125). 
 
         Username = (FirstName.substring(0, 1).toLowerCase() +
                     LastName.toLowerCase() +
@@ -61,26 +75,21 @@ public class User {
 
     // Setters for password (No getters for security reasons)
     public String setPassword(String ProposedPassword) {
-        /* PREQ-10 & 11: Passwords must be a minimum of 8 characters,
-         must start with a letter, must have a letter, a number and
-         a special character, if this requirement is not satisfied,
-         display an appropriate error message.
-
-         Password used in the past cannot be used when password is reset */
+        //PREQ-10 & 11: Passwords must be a minimum of 8 characters, must start with a letter, must have a letter, a number and a special character, if this requirement is not satisfied, display an appropriate error message. Password used in the past cannot be used when password is reset 
 
         if(ProposedPassword.length() < 8) {
             ErrorMessage = "Password length is too short!";
             IsError = true;
         }
-        else if((ProposedPassword.toUpperCase().charAt(0) < 65) || (ProposedPassword.toUpperCase().charAt(0) > 90)) {
+        else if(ProposedPassword.matches(".*[a-zA-Z].*")) {
             ErrorMessage = "Password must start with a letter!";
             IsError = true;
         }
-        else if(!CheckForNumbers(ProposedPassword)) {
+        else if(!ProposedPassword.matches(".*[0-9].*")) {
             ErrorMessage = "Password must contain a number!";
             IsError = true;
         }
-        else if(!CheckForSpecialCharacters(ProposedPassword)) {
+        else if(!ProposedPassword.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
             ErrorMessage = "Password must contain a special character!";
             IsError = true;
         }
@@ -99,43 +108,52 @@ public class User {
         return "Password has been reset successfully!";
     }
 
-    // Supplementary Methods
-    private boolean CheckForNumbers(String Password) {
+    public void SendToDatabase() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String userJson = null;
 
-        boolean Result = false;
+        try {
+            userJson = objectMapper.writeValueAsString(User);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        String[] Numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        // This list was not explicitly defined in the instructions
-        // As such this list is subject to change
+        String sql = "INSERT INTO user_data (user_json) VALUES (?)";
 
-        for(int i = 0; i < Password.length(); i++) {
-            for (String number : Numbers) {
-                if (Password.charAt(i) == number.charAt(0)) {
-                    Result = true;
-                    break;
+        try (Connection conn = DriverManager.getConnection(dbURL, Username, Password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, userJson);
+            int rowsAffected = pstmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public string RetrieveFromDatabase() {
+        String SQL = "SELECT * FROM users WHERE username = ? AND password = ?";
+
+        try (Connection connection = DriverManager.getConnection(dbURL, Username, Password)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            ResultSet rs = pstmt.executeQuery()) {
+
+                if (rs.next()) {
+                    String userJson = rs.getString("user_json");
+
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    User retrievedUser = objectMapper.readValue(userJson, User.class);
                 }
             }
         }
-        return Result;
-    }
-
-    private boolean CheckForSpecialCharacters(String Password) {
-
-        boolean Result = false;
-
-        String[] AllowedSpecialCharacters = {"!", "@", "#", "$", "%", "^", "&", "*", "\"", ":"};
-        // This list was not explicitly defined in the instructions
-        // As such this list is subject to change
-
-        for(int i = 0; i < Password.length(); i++) {
-            for (String allowedSpecialCharacter : AllowedSpecialCharacters) {
-                if (Password.charAt(i) == allowedSpecialCharacter.charAt(0)) {
-                    Result = true;
-                    break;
-                }
-            }
+        catch (SQLException | com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+            return "User was not found.";
         }
-        return Result;
-    }
 
+        return "Retrival Successful.";
+    }*/
+        
 }
