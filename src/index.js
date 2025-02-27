@@ -11,6 +11,7 @@ import SecurityQ from './Pages/SecurityQ';
 import ResetPassword from './Pages/ResetPassword';
 import AdminHomePage from './Pages/AdminHomePage';
 import AdminUsers from './Pages/AdminUsers';
+import AdminRequestPage from './Pages/AdminRequestPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,7 @@ root.render(
                 <Route path="/setpassword" element={<ResetPassword/>}/>
                 <Route path="/adminhome" element={<AdminHomePage/>}/>
                 <Route path="/adminusers" element={<AdminUsers/>}/>
+                <Route path="/adminrequests" element={<AdminRequestPage/>}/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode> 

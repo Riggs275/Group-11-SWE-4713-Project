@@ -13,6 +13,11 @@ export default function NavBar(){
                     Users
                     </Link>
                 </li>
+                <li>
+                    <Link to={"/adminrequests"} className='links'>
+                    Requests
+                    </Link>
+                </li>
             </ul>
 
         </nav>

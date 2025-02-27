@@ -8,7 +8,9 @@ export function SecurityQForm(){
     const navigate = useNavigate();
     const location = useLocation();
     const userID = location.state;
-    document.getElementById('welcomeUser').innerText = `Hey ${userID} we found your account answer these security questions to reset your password`
+    if(userID != null){
+            document.getElementById('welcomeUser').innerText = `Hey ${userID} we found your account answer these security questions to reset your password`
+    }
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

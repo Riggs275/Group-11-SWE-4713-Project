@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import logo from '../imgs/Icon.png'
 import NavBar from './NavBar';
+import { RequestTable, UserTable } from './Tables';
+import userData from "./fakeData.json"
+import requestData from "./requestFakeData.json"
+import pfp from '../imgs/stock.jpg'
 
 export function CreateAccountHeader({children}){
     return(
@@ -99,27 +103,40 @@ export function ForgotPasswordHeader({children}){
     );
 }
 
-export function AdminHomeHeader({children}){
+export function AdminHomeHeader(){
     return(
         
         <div className='Home'>
             <NavBar/>
             <div className='PageContent'>
-                <p>Current User Info</p>
+                <p>Your person here</p>
             </div>
         </div>
     );
 }
 
-
-export function AdminUserHeader({children}){
+export function AdminRequestHeader(){
     return(
-        
         <div className='Home'>
             <NavBar/>
             <div className='PageContent'>
-                <p>User Tables</p>
+                <RequestTable userData={requestData}/>
             </div>
+            <UserPicture username={"Adam S"} userType={"Admin"}/>
+
+        </div>
+    );
+}
+
+
+export function AdminUserHeader(){
+    return(
+        <div className='Home'>
+            <NavBar/>
+            <div className='PageContent'>
+                <UserTable userData={userData}/>
+            </div>
+            <UserPicture username={"Adam S"} userType={"Admin"}/>
         </div>
     );
 }
@@ -140,5 +157,15 @@ export function OrLines(){
 export function ErrorParagraph(){
     return(
         <p className='errorField'>Error Header</p>
+    );
+}
+
+export function UserPicture({username, userType}){
+    return(
+        <div className='pfpDiv'>
+            <img src={pfp} alt="pfp" className='pfp'/>
+            <p>{username}</p>
+            <p>{userType}</p>
+        </div>
     );
 }

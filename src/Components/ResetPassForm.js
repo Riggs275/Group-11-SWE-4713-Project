@@ -7,8 +7,9 @@ export function ResetPassForm(){
     const navigate = useNavigate();
     const location = useLocation();
     const userID = location.state;
+    if(userID != null){
     document.getElementById('welcomeUser').innerText = `Hey ${userID} in your new password in the boxes below`
-
+    }
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };

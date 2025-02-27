@@ -1,0 +1,75 @@
+.userTable{
+    position: relative;
+    width: 100%;
+    max-width: 80vw;
+    height: auto;
+    max-height: 90vh;
+    overflow: auto; 
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
+.userTable::-webkit-scrollbar{
+    width: 10px;
+}
+.userTable::-webkit-scrollbar-track{
+    border-radius: 8px;
+    background-color: #e7e7e7;
+    border: 1px solid #cacaca;
+}
+.userTable::-webkit-scrollbar-thumb{
+    border-radius: 8px;
+    background-color: #5f2c61;
+}
+table{
+    width: 100%; 
+    max-width: 100%; 
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    table-layout: fixed; 
+}
+
+th,td{
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+th{
+    text-align: left;
+}
+thead th{
+    background-color: #55608f;
+}
+tbody tr:hover{
+    background-color: rgba(255,255,255,00.3s);
+}
+tbody td{
+    position: relative;
+}
+tbody td:hover:before{
+    content: "";
+    position: relative;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(255,255,255,0.2);
+    z-index: -1;
+}
+.createUserContainer{
+    position: right;
+    margin-bottom: 10px;
+}
+.createUserButton{
+    text-align: center;
+
+    background-color:  lightgreen;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.createUserButton:hover{
+    background-color: #adff2f;
+}
