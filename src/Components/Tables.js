@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useTable, useSortBy } from "react-table";
 import { CreateNewUser } from "./Buttons";
+import { Link } from 'react-router-dom';
+
 export function UserTable({ userData }) {
     const data = React.useMemo(() => userData, [userData]);
 
@@ -22,8 +24,9 @@ export function UserTable({ userData }) {
 
     return (
         <div className="userTable">
-            <CreateNewUser/>
-
+            <Link to="/addAccountAdmin">
+                <CreateNewUser/>
+            </Link>
             <table {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
@@ -39,7 +42,7 @@ export function UserTable({ userData }) {
                                             ? column.isSortedDesc
                                                 ? " 🔽" // Descending
                                                 : " 🔼" // Ascending
-                                            : " --- "}
+                                            : " ---"}
                                     </span>
                                 </th>
                             ))}

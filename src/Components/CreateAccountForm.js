@@ -6,7 +6,7 @@ import {createAccountRequest } from "./api";
 import { useNavigate } from "react-router-dom";
 
 export function TheNameForm(){
-    const [formData, setFormData] = useState({firstName: "", lastName: "",email:"", DOB: ""});
+    const [formData, setFormData] = useState({firstName: "", address: "", lastName: "",email:"", DOB: ""});
     const navigate = useNavigate();
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,6 +37,14 @@ export function TheNameForm(){
                     <input type="text" className={"Box"} name="lastName" value={formData.lastName} onChange={handleChange} />
                 </label>
                 </div>
+                <br/>
+                <div className={"CreateTextBox"}>
+                <label>
+                    Address:
+                    <br/>
+                    <input type={"text"} className={"Box"} name={"Address"} value={formData.address} onChange={handleChange}/>
+                </label>
+                </div>
                     <br/>
                     <div className={"CreateTextBox"}>
                 <label>
@@ -53,6 +61,7 @@ export function TheNameForm(){
                     <input type={"date"} className={"Box"} name={"DOB"} value={formData.DOB} onChange={handleChange}/>
                 </label>
                 </div>
+                
                 <br/>
             </div>
 

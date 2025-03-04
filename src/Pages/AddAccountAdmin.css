@@ -1,0 +1,41 @@
+.PageContent{
+    justify-content: center;
+    align-items: center;
+}
+
+.FormDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    height: 100vh;
+    max-width: 100vw;
+}
+.nav {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    width: 250px;  
+    min-height: 100vh; 
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+#error, .error-text, .success-text {
+    font-size: 15px; /* Adjust as needed */
+    max-width: 25vw; /* Ensure it doesn’t stretch */
+    display: block; /* Ensure it takes full width */
+    word-wrap: break-word; /* Wrap long text */
+    text-align: center; /* Centers text */
+}
+
+.error-text{
+   color: red;
+
+}
+.success-text{
+    color: greenyellow;
+}

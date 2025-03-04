@@ -17,7 +17,7 @@ export function LoginFom(){
         const result = await loginUserRequest(formData);
         //Should move them to the admin or accountant page but not coded yet
         if(result.success){
-            navigate('/forgotpass')
+            navigate('/adminusers')
         }
     };
     return(

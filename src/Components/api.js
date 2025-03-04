@@ -52,6 +52,24 @@ export const createAccountRequest = async (formData) => {
     }
 }
 
+export const adminAddAccountRequest= async (formData) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/adminAddAccount`,{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(formData),
+        });
+        if (!response.ok) throw new Error("Failed to add account");
+        console.log("We successfully sent the request to the admin");
+        return { success: true, response: response, successMessage: "User ID created sucessfully"};
+
+    } catch(error) { 
+        console.error("Error:",error);
+        return { success: false, errMessage: error };
+
+    }
+}
+
 export const setNewPassword=async (formData) =>{
     try{
         const response = await fetch(`${API_BASE_URL}/setNewPassword`,{

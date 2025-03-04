@@ -122,11 +122,13 @@ export function AdminRequestHeader(){
             <div className='PageContent'>
                 <RequestTable userData={requestData}/>
             </div>
-            <UserPicture username={"Adam S"} userType={"Admin"}/>
+           
 
         </div>
     );
 }
+//<UserPicture username={"Adam S"} userType={"Admin"}/>
+
 
 
 export function AdminUserHeader(){
@@ -136,11 +138,22 @@ export function AdminUserHeader(){
             <div className='PageContent'>
                 <UserTable userData={userData}/>
             </div>
-            <UserPicture username={"Adam S"} userType={"Admin"}/>
         </div>
     );
 }
+//<UserPicture username={"Adam S"} userType={"Admin"}/>
 
+export function AddAccountHeader({children}){
+    return(
+        <div className='Home'>
+            <NavBar/>
+            <div className='PageContent'>
+                {children}
+            </div>
+
+        </div>
+    );
+}
 
 export function OrLines(){
     return(
