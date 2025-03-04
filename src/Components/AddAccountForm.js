@@ -32,13 +32,15 @@ export function AddAccountForm() {
 
         const result = await adminAddAccountRequest(formData);
         if (result.success) {
-            navigate('/signin', { state: result.successMessage });
+            navigate('/adminusers', { state: result.successMessage });
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <div className={"FormDiv"}>
+                <div>Create Account</div>
+                <br/>
                 <div className={"CreateTextBox"}>
                     <label>
                         First Name:<br />

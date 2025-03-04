@@ -13,6 +13,7 @@ import AdminHomePage from './Pages/AdminHomePage';
 import AdminUsers from './Pages/AdminUsers';
 import AdminRequestPage from './Pages/AdminRequestPage';
 import AddAccount from './Pages/AddAccountAdmin'
+import ModifyAccount from './Pages/ModifyAccount';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +29,7 @@ root.render(
                 <Route path="/adminusers" element={<AdminUsers/>}/>
                 <Route path="/adminrequests" element={<AdminRequestPage/>}/>
                 <Route path="/addAccountAdmin" element={<AddAccount/>}/>
+                <Route path="/modifyAccountAdmin" element={<ModifyAccount/>}/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode> 

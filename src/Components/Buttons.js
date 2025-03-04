@@ -85,4 +85,14 @@ export function CreateNewUser(){
     );
 
 }
+//Lets admin modify a existing user
+export function ModifyUser(){
+    return(
+        <div className='createUserContainer'>
+            <button type='submit' className='createUserButton'>Modify User</button>
+        </div>
+    );
+
+}
+
 

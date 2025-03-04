@@ -42,11 +42,11 @@ export function TheNameForm(){
                 <label>
                     Address:
                     <br/>
-                    <input type={"text"} className={"Box"} name={"Address"} value={formData.address} onChange={handleChange}/>
+                    <input type="text" className={"Box"} name="address" value={formData.address} onChange={handleChange}/>
                 </label>
                 </div>
                     <br/>
-                    <div className={"CreateTextBox"}>
+                <div className={"CreateTextBox"}>
                 <label>
                     Email:
                     <br/>

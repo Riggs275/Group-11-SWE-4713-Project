@@ -1,19 +1,34 @@
 import * as React from "react";
 import { useTable, useSortBy } from "react-table";
+import { useNavigate, Link } from 'react-router-dom';
 import { CreateNewUser } from "./Buttons";
-import { Link } from 'react-router-dom';
 
 export function UserTable({ userData }) {
     const data = React.useMemo(() => userData, [userData]);
-
+    const navigate = useNavigate();
     const columns = React.useMemo(() => [
         { Header: "User ID", accessor: "UserNameID" },
         { Header: "First Name", accessor: "FirstName" },
         { Header: "Last Name", accessor: "LastName" },
         { Header: "Date of Birth", accessor: "DOB" },
         { Header: "User Type", accessor: "UserType" },
-        { Header: "Status", accessor: "ActiveStatus" }
+        { Header: "Status", accessor: "ActiveStatus" },
+        {
+            Header: "Modify", accessor: "modifying", disableSortBy: true,
+            Cell: ({ row }) => (
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <button 
+                        onClick={() => navigate("/modifyAccountAdmin", { state: row.original }) }//onDelete(row.original.UserNameID)
+                        style={{ background: "#4681f4", color: "white", border: "none", padding: "5px 10px", cursor: "pointer" }}
+                    >
+                        Modify User
+                    </button>
+                </div>
+
+            )
+        }
     ], []);
+//             disableSortBy: true, // Disable sorting for this column
 
     const tableInstance = useTable(
         { columns, data }, 

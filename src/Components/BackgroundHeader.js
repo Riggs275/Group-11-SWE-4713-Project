@@ -15,7 +15,6 @@ export function CreateAccountHeader({children}){
             <div className={"DivApp-Header"}>
                 <header className="App-header">
                     <header className={"Create-Account"}>Create Account</header>
-                    <ErrorParagraph/>
                     {children}
                 </header>
             </div>
@@ -34,7 +33,6 @@ export function SignInHeader({children}){
             <div className={"DivApp-Header"}>
                 <header className="App-header">
                     <header className={"Create-Account"}>Sign In</header>
-                    <ErrorParagraph/>
 
                     {children}
                 </header>
