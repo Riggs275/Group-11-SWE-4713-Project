@@ -73,7 +73,6 @@ export function ResetPasswordHeader({children}){
                 
                 <header className="App-header">
                     <header className={"Create-Account"}>Reset Password</header>
-                    <ErrorParagraph/>
                     {children}
                 </header>
             </div>
@@ -92,7 +91,6 @@ export function ForgotPasswordHeader({children}){
                 
                 <header className="App-header">
                     <header className={"Create-Account"}>Forgot Password</header>
-                    <ErrorParagraph/>
                     {children}
                 </header>
             </div>

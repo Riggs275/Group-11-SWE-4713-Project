@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { ModifyUser } from "./Buttons";
 import { adminAddAccountRequest } from "./api";
 import { useLocation, useNavigate } from "react-router-dom";
-import { checkPassword } from "../Helpers/checkpassword";
 
 export function ModifyAccountForm() {
     const location = useLocation();
@@ -15,10 +14,8 @@ export function ModifyAccountForm() {
         lastName: "", 
         email: "", 
         DOB: "", 
-        password: ""
     });
 
-    const [passwordError, setPasswordError] = useState(""); // Password validation error
 
     useEffect(() => {
         if (row) {
@@ -28,7 +25,6 @@ export function ModifyAccountForm() {
                 address: row.Address || "",
                 email: row.Email || "",
                 DOB: row.DOB || "",
-                password: "", // Keep password empty for security reasons
                 userType: row.UserType
             });
         }
@@ -38,19 +34,12 @@ export function ModifyAccountForm() {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
 
-        if (name === "password") {
-            setPasswordError(checkPassword(value));
-        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData);
 
-        if (passwordError.trim().length > 0) {
-            alert("Fix password errors before submitting.");
-            return;
-        }
 
         const result = await adminAddAccountRequest(formData);
         if (result.success) {
@@ -146,21 +135,6 @@ export function ModifyAccountForm() {
                 </div>
                 <br />
 
-                <div className={"CreateTextBox"}>
-                    <label>
-                        Password:<br />
-                        <input 
-                            type="password" 
-                            className={"Box"} 
-                            name="password" 
-                            value={formData.password} 
-                            onChange={handleChange} 
-                        />
-                        <p id="error" className={passwordError ? "error-text" : "success-text"}>
-                            {passwordError ? passwordError : "This password meets the requirements"}
-                        </p>
-                    </label>
-                </div>
                 
                 <br/>
                 <ModifyUser />

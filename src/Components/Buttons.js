@@ -89,7 +89,7 @@ export function CreateNewUser(){
 export function ModifyUser(){
     return(
         <div className='createUserContainer'>
-            <button type='submit' className='createUserButton'>Modify User</button>
+            <button type='submit' className='createUserButton'>Set</button>
         </div>
     );
 

@@ -28,7 +28,7 @@ export function checkPassword(password) {
     if (!letterStart) errorString += " start with a letter,";
     if (!hasANum) errorString += " a number,";
     if (hasASpace) errorString += " no spaces,";
-    if (!hasASpecial) errorString += " 1 special character,";
+    if (!hasASpecial) errorString += "1 special character,";
 
     return errorString;
 }

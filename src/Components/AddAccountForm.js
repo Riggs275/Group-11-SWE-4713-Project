@@ -76,16 +76,6 @@ export function AddAccountForm() {
                     </label>
                 </div>
                 <br />
-                <div className={"CreateTextBox"}>
-                    <label>
-                        Password:<br />
-                        <input type="password" className={"Box"} name="password" value={formData.password} onChange={handleChange} />
-                        <p id="error" className={passwordError ? "error-text" : "success-text"}>
-                            {passwordError  ? passwordError : "This password meets the requirements"}
-                        </p>
-                    </label>
-                </div>
-                <br/>
                 <CreateNewUser />
             </div>
             

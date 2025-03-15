@@ -21,7 +21,13 @@ export function UserTable({ userData }) {
                         onClick={() => navigate("/modifyAccountAdmin", { state: row.original }) }//onDelete(row.original.UserNameID)
                         style={{ background: "#4681f4", color: "white", border: "none", padding: "5px 10px", cursor: "pointer" }}
                     >
-                        Modify User
+                        Edit
+                    </button>
+                    <button 
+                        onClick={() => navigate("/modifyAccountAdmin", { state: row.original }) }//onDelete(row.original.UserNameID)
+                        style={{ background: "#4681f4", color: "white", border: "none", padding: "5px 10px", cursor: "pointer" }}
+                    >
+                        
                     </button>
                 </div>
 
@@ -117,7 +123,7 @@ export function RequestTable({ userData }) {
 
     const tableInstance = useTable(
         { columns, data }, 
-        useSortBy // ✅ Ensure it's always included here
+        useSortBy
     );
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
