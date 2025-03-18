@@ -127,6 +127,15 @@ public class User {
         activeStatus = newActive;
     }
 
+    @Column(name="Email")
+    private String email = "";
+    public String getEmail(){
+        return email;
+    }
+    public void setEmail(String newEmail){
+        email = newEmail;
+    }
+
     @PrePersist
     protected void onCreate() {
         dateAdded = new Date(); // Automatically set DateAdded when creating a new user

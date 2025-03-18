@@ -13,13 +13,13 @@ public class Passwords {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremented primary key
-    @Column(name = "PasswordRef")
+    @Column(name = "password_ref")
     private int passwordRef;
 
-    @Column(name = "PasswordHash", nullable = false, length = 255)
+    @Column(name = "password_hash", nullable = false, length = 255)
     private String passwordHash;
 
-    @Column(name = "OldPasswords", columnDefinition = "TEXT")
+    @Column(name = "old_passwords", columnDefinition = "TEXT")
     private String oldPasswords;
 
     // Constructors
@@ -49,6 +49,9 @@ public class Passwords {
 
     public String getOldPasswords() {
         return oldPasswords;
+    }
+    public void addOldPasswords(String addPassword){
+        this.oldPasswords += "," + addPassword;
     }
 
     public void setOldPasswords(String oldPasswords) {

@@ -24,6 +24,18 @@ public class UserController {
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> loginData) {
         return userService.loginUser(loginData);
     }
+    @PostMapping("/forgotAccountRequest")
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String,String> forgotPasswordData){
+        return userService.forgotPassword(forgotPasswordData);
+    }
+    @PostMapping("/checkSecurityQ")
+    public ResponseEntity<?> securityQ(@RequestBody Map<String,String> securityData, String userID){
+        return userService.securityQuestions(securityData, userID);
+    }
+    @PostMapping("/setNewPassword")
+    public ResponseEntity<?> setNewP(@RequestBody Map<String,String> passwordData, String userID){
+        return userService.setNewPassword(passwordData, userID);
+    }
 /*
     @PostMapping("/forgotAccountRequest")
     public ResponseEntity<?> forgotAccount(@RequestBody Map<String, String> forgotData) {

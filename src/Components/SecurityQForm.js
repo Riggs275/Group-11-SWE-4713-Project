@@ -18,7 +18,7 @@ export function SecurityQForm(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData);
-        const result = await checkSecurityQ(formData);
+        const result = await checkSecurityQ(formData, userID);
         if (result.success){
             navigate('/setpassword', {state: userID})
         }

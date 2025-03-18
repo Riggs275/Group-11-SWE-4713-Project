@@ -27,7 +27,7 @@ export function UserTable({ userData }) {
                         onClick={() => navigate("/modifyAccountAdmin", { state: row.original }) }//onDelete(row.original.UserNameID)
                         style={{ background: "#4681f4", color: "white", border: "none", padding: "5px 10px", cursor: "pointer" }}
                     >
-                        
+                        Deactivate
                     </button>
                 </div>
 

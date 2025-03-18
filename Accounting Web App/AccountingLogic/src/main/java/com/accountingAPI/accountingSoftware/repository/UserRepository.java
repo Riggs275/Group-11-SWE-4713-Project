@@ -20,5 +20,5 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query("SELECT p FROM Passwords p WHERE p.passwordRef = :userRef")
     Optional<Passwords> findPasswordByUserId(@Param("userRef") Integer userRef);
 
-
+    
 }
