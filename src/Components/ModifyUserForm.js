@@ -10,10 +10,11 @@ export function ModifyAccountForm() {
 
     const [formData, setFormData] = useState({
         firstName: "", 
-        address: "", 
         lastName: "", 
+        address: "", 
         email: "", 
         DOB: "", 
+        userType: ""
     });
 
 

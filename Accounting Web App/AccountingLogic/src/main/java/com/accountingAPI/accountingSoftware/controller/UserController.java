@@ -29,13 +29,22 @@ public class UserController {
         return userService.forgotPassword(forgotPasswordData);
     }
     @PostMapping("/checkSecurityQ")
-    public ResponseEntity<?> securityQ(@RequestBody Map<String,String> securityData, String userID){
+    public ResponseEntity<?> securityQ(@RequestBody Map<String,String> securityData){
+        String userID = securityData.get("userID");
         return userService.securityQuestions(securityData, userID);
     }
     @PostMapping("/setNewPassword")
-    public ResponseEntity<?> setNewP(@RequestBody Map<String,String> passwordData, String userID){
+    public ResponseEntity<?> setNewP(@RequestBody Map<String,String> passwordData){
+        String userID = passwordData.get("userID");
         return userService.setNewPassword(passwordData, userID);
     }
+    
+    @PostMapping("/createAccount")
+    public ResponseEntity<?> createAccount(@RequestBody Map<String, String> accountData) {
+        String makerID = accountData.get("makerID"); // Extract makerID from JSON
+        return userService.createAccount(accountData, makerID);
+    }
+
 /*
     @PostMapping("/forgotAccountRequest")
     public ResponseEntity<?> forgotAccount(@RequestBody Map<String, String> forgotData) {

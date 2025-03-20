@@ -22,7 +22,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class User {
+public class Users {
 
     @Id
     @Column(name = "UserNameID", length = 50, nullable = false)

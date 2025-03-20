@@ -13,13 +13,13 @@ public class Passwords {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremented primary key
-    @Column(name = "password_ref")
+    @Column(name = "PasswordRef")
     private int passwordRef;
 
-    @Column(name = "password_hash", nullable = false, length = 255)
+    @Column(name = "PasswordHash", nullable = false, length = 255)
     private String passwordHash;
 
-    @Column(name = "old_passwords", columnDefinition = "TEXT")
+    @Column(name = "OldPasswords", columnDefinition = "TEXT")
     private String oldPasswords;
 
     // Constructors

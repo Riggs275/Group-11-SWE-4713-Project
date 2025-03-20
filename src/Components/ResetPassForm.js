@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { checkPassword } from "../Helpers/checkpassword";
 
 export function ResetPassForm() {
-    const [formData, setFormData] = useState({ newPassword: "", retype: "", DOB: "" });
+    const [formData, setFormData] = useState({ newPassword: "", retype: ""});
     const [passwordError, setPasswordError] = useState(""); // Stores password validation errors
     const [matchError, setMatchError] = useState(""); // Stores mismatch error
     const navigate = useNavigate();

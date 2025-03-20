@@ -1,11 +1,14 @@
-C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\controller\UserController.java
 C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\AccountingAPI.java
 C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\controller\APIController.java
 C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\Login.java
+C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\model\Users.java
 C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\repository\UserRepository.java
 C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\service\UserService.java
-C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\model\Passwords.java
 C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\User.java
+C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\service\EmailService.java
+C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\controller\UserController.java
+C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\repository\PasswordRepository.java
+C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\model\Passwords.java
 C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\config\CorsConfig.java
+C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\util\PasswordGenerator.java
 C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\ForgotPassword.java
-C:\Users\egab2\FinanceProjects\Group-11-SWE-4713-Project\Accounting Web App\AccountingLogic\src\main\java\com\accountingAPI\accountingSoftware\model\User.java
