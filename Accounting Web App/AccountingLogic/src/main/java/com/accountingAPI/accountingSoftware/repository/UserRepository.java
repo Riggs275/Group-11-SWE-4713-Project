@@ -12,8 +12,12 @@ import com.accountingAPI.accountingSoftware.model.Users;
 @Repository
 public interface UserRepository extends JpaRepository<Users, String> {
 
-    @Query("SELECT u FROM User u WHERE u.userNameID = :userID")
+    @Query("SELECT u FROM Users u WHERE u.userNameID = :userID")
     Optional<Users> findByUserID(@Param("userID") String userID);
     
+    @Query("SELECT u FROM Users u WHERE u.email = :email")
+    Optional<Users> findByEmail(@Param("email") String email);
+
+
 
 }

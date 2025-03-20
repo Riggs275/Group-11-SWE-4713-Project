@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../imgs/Icon.png'
 import NavBar from './NavBar';
 import { RequestTable, UserTable } from './Tables';
-import userData from "./fakeData.json"
-import requestData from "./requestFakeData.json"
+import { getRequestedUsersTable, getUsersTable } from './api';
 import pfp from '../imgs/stock.jpg'
 
 export function CreateAccountHeader({children}){
@@ -112,6 +113,30 @@ export function AdminHomeHeader(){
 }
 
 export function AdminRequestHeader(){
+    const location= useLocation();
+    const [requestData, setUserData] = useState([]); // Store fetched user data
+    const userID = location.state?.userID || localStorage.getItem("userID"); // Get from state or localStorage
+    console.log(userID);
+    useEffect(() => {
+        if (!userID) {
+            console.error("No userID found!");
+            return;
+        }
+
+        const fetchUserData = async () => {
+            try {
+                const data = await getRequestedUsersTable({"makerID": userID }); // Call API function
+                console.log("Data: " + data.data);
+                setUserData(data.data); // Update state with fetched user data
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+
+        fetchUserData(); // Invoke the function
+
+    }, [userID]); // Re-run when `userID` changes
+
     return(
         <div className='Home'>
             <NavBar/>
@@ -127,16 +152,41 @@ export function AdminRequestHeader(){
 
 
 
-export function AdminUserHeader(){
-    return(
+export function AdminUserHeader() {
+    const location= useLocation();
+    const [userData, setUserData] = useState([]); // Store fetched user data
+    const userID = location.state?.userID || localStorage.getItem("userID"); // Get from state or localStorage
+
+    useEffect(() => {
+        if (!userID) {
+            console.error("No userID found!");
+            return;
+        }
+
+        const fetchUserData = async () => {
+            try {
+                const data = await getUsersTable({ "makerID": userID }); // Call API function
+                setUserData(data.data); // Update state with fetched user data
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+
+        fetchUserData(); // Invoke the function
+
+    }, [userID]); // Re-run when `userID` changes
+
+    return (
         <div className='Home'>
-            <NavBar/>
+            <NavBar />
             <div className='PageContent'>
-                <UserTable userData={userData}/>
+                <UserTable userData={userData} /> {/* Pass fetched user data */}
             </div>
         </div>
     );
 }
+
+
 //<UserPicture username={"Adam S"} userType={"Admin"}/>
 
 export function AddAccountHeader({children}){

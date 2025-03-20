@@ -17,7 +17,8 @@ export function LoginFom(){
         const result = await loginUserRequest(formData);
         //Should move them to the admin or accountant page but not coded yet
         if(result.success){
-            navigate('/adminusers')
+            localStorage.setItem("userID", formData.userID)
+            navigate('/adminusers', {state: {userID: formData.userID}})
         }
     };
     return(

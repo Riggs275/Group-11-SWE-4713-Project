@@ -1,5 +1,7 @@
 package com.accountingAPI.accountingSoftware.config;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -14,8 +16,8 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         
-        // Allow the specific origin
-        config.addAllowedOrigin("http://localhost:3001");
+        // Allow multiple origins
+        config.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3001"));
         
         // Allow credentials like cookies, authorization headers
         config.setAllowCredentials(true);
@@ -28,12 +30,11 @@ public class CorsConfig {
         config.addAllowedMethod("OPTIONS");
         
         // Allow common HTTP headers
-        config.addAllowedHeader("Origin");
-        config.addAllowedHeader("Content-Type");
-        config.addAllowedHeader("Accept");
-        config.addAllowedHeader("Authorization");
+        config.addAllowedHeader("*");  // Allow all headers
         
+        // Apply this configuration to all endpoints
         source.registerCorsConfiguration("/**", config);
+        
         return new CorsFilter(source);
     }
 }

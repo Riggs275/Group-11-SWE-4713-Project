@@ -139,6 +139,12 @@ public class UserService {
         String DOBString = accountData.get("DOB");
 
         String userNameID = generateRecID(FName, LName, DOBString);
+
+        Optional<Users> emailDuplicate = userRepository.findByEmail(email);
+        Optional<RequestedUser> emailDuplicate2 = requestedUserRepository.findByEmail(email);
+        if (emailDuplicate.isPresent() || emailDuplicate2.isPresent())
+            return ResponseEntity.badRequest().body(Map.of("error", "email already registered"));
+
         if (userNameID.equals("Invalid"))
             return ResponseEntity.badRequest().body(Map.of("error", "userNameId didn't not generate successfully"));
  
@@ -172,9 +178,15 @@ public class UserService {
         
         
         Optional<Users> userOptional = userRepository.findByUserID(makerID);
+        Optional<Users> emailDuplicate = userRepository.findByEmail(email);
+        Optional<RequestedUser> emailDuplicate2 = requestedUserRepository.findByEmail(email);
+        if (emailDuplicate.isPresent() || emailDuplicate2.isPresent())
+            return ResponseEntity.badRequest().body(Map.of("error", "email already in requests or already registered"));
+
+
         if(userOptional.isPresent()){
             Users user = userOptional.get();
-            if(user.getUserType().equals("Admin")){
+            if(user.getUserType().equals("Admin") && user.getActive()){
                 String userNameID = generateAccountID(FName, LName, DOBString);
                     if (userNameID.equals("Invalid"))
                         return ResponseEntity.badRequest().body(Map.of("error", "userNameId didn't not generate successfully"));
@@ -270,7 +282,10 @@ public class UserService {
         if (maker.isEmpty() || !maker.get().getUserType().equals("Admin")) {
             return ResponseEntity.badRequest().body(Map.of("error", "Not an admin or maker not found"));
         }
-
+        
+        if (!maker.get().getActive()){
+            return ResponseEntity.badRequest().body(Map.of("error", "Maker is not active"));
+        }
         Optional<Users> userOptional = userRepository.findById(userNameID);
         if (userOptional.isEmpty()) {
             return ResponseEntity.badRequest().body(Map.of("error", "Requested User Not Found: " + userNameID));
