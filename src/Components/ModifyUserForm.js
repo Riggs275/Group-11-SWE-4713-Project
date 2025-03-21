@@ -1,12 +1,21 @@
 import { useState, useEffect } from "react";
 import { ModifyUser } from "./Buttons";
-import { adminAddAccountRequest } from "./api";
+import { editUserRequest } from "./api";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export function ModifyAccountForm() {
     const location = useLocation();
     const row = location.state; // Retrieve passed data
     const navigate = useNavigate();
+    const makerID = location.state?.userID || localStorage.getItem("userID"); // Get from state or localStorage
+    const [userName, setUserName] = useState("");
+
+    useEffect(() => {
+        if (row?.userName) {
+            setUserName(row.userName);
+        }
+    }, [row]);
+
 
     const [formData, setFormData] = useState({
         firstName: "", 
@@ -14,19 +23,23 @@ export function ModifyAccountForm() {
         address: "", 
         email: "", 
         DOB: "", 
-        userType: ""
+        userType: "",
+        "makerID": makerID,
+        "userID": row.userName
     });
 
 
     useEffect(() => {
         if (row) {
             setFormData({
-                firstName: row.FirstName || "",
-                lastName: row.LastName || "",
-                address: row.Address || "",
-                email: row.Email || "",
-                DOB: row.DOB || "",
-                userType: row.UserType
+                firstName: row.firstName || "",
+                lastName: row.lastName || "",
+                address: row.address || "",
+                email: row.email || "",
+                DOB: row.dob || "",
+                userType: row.userType,
+                "makerID": makerID, 
+                "userID": row.userName
             });
         }
     }, [row]); 
@@ -42,7 +55,7 @@ export function ModifyAccountForm() {
         console.log("Form Data:", formData);
 
 
-        const result = await adminAddAccountRequest(formData);
+        const result = await editUserRequest(formData);
         if (result.success) {
             navigate('/adminusers', { state: result.successMessage });
         }
@@ -51,9 +64,10 @@ export function ModifyAccountForm() {
     return (
         <form onSubmit={handleSubmit}>
             <div className={"FormDiv"}>
-                <div>Modify Account</div>
-                <br/>
+                <h3 id="userID">Modifying {userName}</h3>
+ 
 
+                <br />
                 <div className={"CreateTextBox"}>
                     <label>
                         First Name:<br />

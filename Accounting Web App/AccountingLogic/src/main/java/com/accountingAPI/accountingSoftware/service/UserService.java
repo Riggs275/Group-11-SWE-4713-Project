@@ -47,7 +47,7 @@ public class UserService {
         if (user.isPresent()) {
 
             Users userRec = user.get();
-            if (!userRec.getActiveStatus())
+            if (!userRec.getActive())
                 return ResponseEntity.badRequest().body(Map.of("error", "Your account is disabled contact your admin to reactivate"));
 
             Optional<Passwords> pass = passwordRepository.findById(userRec.getPassRef()); 
@@ -58,7 +58,7 @@ public class UserService {
             if (pass.isPresent()) {
                 Passwords passRec = pass.get();
                 if(passRec.getPasswordHash().equals(sentPassword)){
-                    return ResponseEntity.ok().body(Map.of("message", "Login successful"));
+                    return ResponseEntity.ok().body(Map.of("message", "Login successful", "userType", userRec.getUserType()));
                 }else{
                     return ResponseEntity.badRequest().body(Map.of("error", "Invalid credentials"));
                 }
@@ -176,6 +176,7 @@ public class UserService {
         String address = accountData.get("address"), email = accountData.get("email");
         String DOBString = accountData.get("DOB"), AccountType = accountData.get("userType");
         
+        System.out.println("Data: " + FName +"|"+LName+"|"+address+"|"+email+"|"+DOBString+"|"+AccountType+"|"+makerID);
         
         Optional<Users> userOptional = userRepository.findByUserID(makerID);
         Optional<Users> emailDuplicate = userRepository.findByEmail(email);
@@ -188,6 +189,7 @@ public class UserService {
             Users user = userOptional.get();
             if(user.getUserType().equals("Admin") && user.getActive()){
                 String userNameID = generateAccountID(FName, LName, DOBString);
+                System.out.print(userNameID);
                     if (userNameID.equals("Invalid"))
                         return ResponseEntity.badRequest().body(Map.of("error", "userNameId didn't not generate successfully"));
 
@@ -234,24 +236,96 @@ public class UserService {
     }
 
 
-    
+        public ResponseEntity<?> acceptCreateAccount(Map<String,String> accountData, String makerID){
+        String FName = accountData.get("firstName"), LName = accountData.get("lastName");
+        String address = accountData.get("address"), email = accountData.get("email");
+        String DOBString = accountData.get("DOB"), AccountType = accountData.get("userType");
+        
+        System.out.println("Data: " + FName +"|"+LName+"|"+address+"|"+email+"|"+DOBString+"|"+AccountType+"|"+makerID);
+        
+        Optional<Users> userOptional = userRepository.findByUserID(makerID);
+        Optional<Users> emailDuplicate = userRepository.findByEmail(email);
+        if (emailDuplicate.isPresent() )
+            return ResponseEntity.badRequest().body(Map.of("error", "email already in requests or already registered"));
 
-    public ResponseEntity<?> acceptRequest(Map<String,String> accountData, String makerID){
+
+        if(userOptional.isPresent()){
+            Users user = userOptional.get();
+            if(user.getUserType().equals("Admin") && user.getActive()){
+                String userNameID = generateAccountID(FName, LName, DOBString);
+                System.out.print(userNameID);
+                    if (userNameID.equals("Invalid"))
+                        return ResponseEntity.badRequest().body(Map.of("error", "userNameId didn't not generate successfully"));
+
+                String passwordHash = PasswordGenerator.generateRandomPassword();
+                if (passwordHash == null || passwordHash.isEmpty()) {
+                    return ResponseEntity.badRequest().body(Map.of("error", "Generated password is invalid"));
+                }
+                //Create a password row
+                Passwords passwordRec = new Passwords(passwordHash, "");
+                passwordRec.setOldPasswords("");
+                System.out.println("PasswordHash:" +passwordHash);
+                System.out.println(passwordRec.getPasswordHash() + " : " + passwordRec.getOldPasswords() + " : " + passwordRec.getPasswordRef());
+                passwordRepository.save(passwordRec);
+                Date DOB;
+                try {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    DOB = dateFormat.parse(DOBString);
+                } catch (ParseException e) {
+                    return ResponseEntity.badRequest().body(Map.of("error", "Invalid DOB format. Use YYYY-MM-DD"));
+                }
+
+                //Add user account with the password reference
+                Users userRec = new Users();
+                setUser(userRec, userNameID, FName, LName,address,email, AccountType, DOB);
+                userRec.setPassRef(passwordRec.getPasswordRef());
+                userRepository.save(userRec);
+                
+                // Send email with generated password
+                emailService.sendEmail(email, "Your New Account Password",
+                        "Hello " + userNameID + ",\n\nYour generated password is: " + passwordHash +
+                        "\n\nPlease log in and change your password immediately.");
+
+                return ResponseEntity.ok().body(Map.of(
+                    "message", "Account created successfully",
+                    "userID", userRec.getUserName(),
+                    "generatedPassword", passwordHash
+                ));
+            }else{
+                return ResponseEntity.badRequest().body(Map.of("error", "Account isn't an admin"));
+            }
+        }else{
+            return ResponseEntity.badRequest().body(Map.of("error", "Maker not found: " + makerID));
+        }
+    }
+
+
+
+    public ResponseEntity<?> acceptRequest(Map<String, String> accountData, String makerID) {
         String userNameID = accountData.get("userID");
         Optional<Users> maker = userRepository.findById(makerID);
 
-        if(maker.isEmpty() || !maker.get().getUserType().equals("Admin")){
+        if (maker.isEmpty() || !maker.get().getUserType().equals("Admin")) {
             return ResponseEntity.badRequest().body(Map.of("error", "Maker is not an admin or does not exist"));
         }
 
         Optional<RequestedUser> reqUserRec = requestedUserRepository.findById(userNameID);
-        if(reqUserRec.isPresent()){
-            RequestedUser reqUser = reqUserRec.get();
-            createAccount(accountData, makerID);
+        if (reqUserRec.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Requested User Not Found: " + userNameID));
+        }
+
+        RequestedUser reqUser = reqUserRec.get();
+
+        // **Wait for createAccount to finish and check the result**
+        ResponseEntity<?> creationResponse = acceptCreateAccount(accountData, makerID);
+
+        // **Only delete the request if the account creation was successful**
+        if (creationResponse.getStatusCode().is2xxSuccessful()) {
             requestedUserRepository.delete(reqUser);
             return ResponseEntity.ok().body(Map.of("message", "User request accepted and removed: " + userNameID));
+        } else {
+            return ResponseEntity.badRequest().body(Map.of("error", "Account creation failed", "details", creationResponse.getBody()));
         }
-        return ResponseEntity.badRequest().body(Map.of("error", "Requested User Not Found: " + userNameID));
     }
 
 

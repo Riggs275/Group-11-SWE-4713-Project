@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ModifyUser } from "./Buttons";
+import { CreateNewUser } from "./Buttons";
 import { adminAddAccountRequest } from "./api";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -7,6 +7,8 @@ export function AddAccountForm() {
     const location = useLocation();
     const row = location.state; // Retrieve passed data
     const navigate = useNavigate();
+    const userID = location.state?.userID || localStorage.getItem("userID"); // Get from state or localStorage
+
 
     const [formData, setFormData] = useState({
         firstName: "", 
@@ -14,7 +16,8 @@ export function AddAccountForm() {
         address: "", 
         email: "", 
         DOB: "", 
-        userType: ""
+        userType: "",
+        "makerID": userID
     });
 
 
@@ -41,7 +44,6 @@ export function AddAccountForm() {
         e.preventDefault();
         console.log("Form Data:", formData);
 
-
         const result = await adminAddAccountRequest(formData);
         if (result.success) {
             navigate('/adminusers', { state: result.successMessage });
@@ -51,7 +53,7 @@ export function AddAccountForm() {
     return (
         <form onSubmit={handleSubmit}>
             <div className={"FormDiv"}>
-                <div>Modify Account</div>
+                <div>Add Account</div>
                 <br/>
 
                 <div className={"CreateTextBox"}>
@@ -138,7 +140,7 @@ export function AddAccountForm() {
 
                 
                 <br/>
-                <ModifyUser />
+                <CreateNewUser/>
             </div>
         </form>
     );

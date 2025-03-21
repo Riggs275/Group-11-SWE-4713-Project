@@ -87,7 +87,7 @@ public class Users {
     public String getUserType(){
         return userType;
     }
-    public void setPassRef(String newUserType){
+    public void setUserType(String newUserType){
         userType = newUserType;
     }
 
