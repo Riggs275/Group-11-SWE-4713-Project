@@ -89,9 +89,23 @@ public class AccountService {
                 currentAccount.setAccountDescription(accountData.get("accountDescription"));
             }
             if (accountData.containsKey("normalSide")) {
-                currentAccount.setAccountDescription(accountData.get("normalSide"));
+                currentAccount.setNormalSide(accountData.get("normalSide"));
             }
-            // ... Add the rest that will be updatable ...
+            if (accountData.containsKey("accountCategory")) {
+                currentAccount.setAccountCategory(accountData.get("accountCategory"));
+            }
+            if (accountData.containsKey("accountSubcategory")) {
+                currentAccount.setAccountSubcategory(accountData.get("accountSubcategory"));
+            }
+            if (accountData.containsKey("orderField")) {
+                currentAccount.setOrderField(accountData.get("orderField"));
+            }
+            if (accountData.containsKey("statement")) {
+                currentAccount.setStatement(accountData.get("statement"));
+            }
+            if (accountData.containsKey("comment")) {
+                currentAccount.setComment(accountData.get("comment"));
+            }
         
             Account updatedAccount = accountRepository.save(account);
         
@@ -108,34 +122,98 @@ public class AccountService {
     }
 
     // Retrieve individual account
-    public Optional<Account> getAccount(Long accountId) {
-        return accountRepository.findById(accountId);
-    }
-
-    // Retrieve all accounts (chart of accounts)
-    public List<Account> getAllAccounts() {
-        return accountRepository.findAll();
+    public ResponseEntity<?> viewAccount(Map<String, String> accessorData) {
+        try {
+            Long accountId = Long.parseLong(accessorData.get("id"));
+            Optional<Account> accountOpt = accountRepository.findById(accountId);
+            if (accountOpt.isPresent()) {
+                return ResponseEntity.ok(accountOpt.get());
+            }
+            else {
+                return ResponseEntity.badRequest().body("Account not found.");
+            }
+        }
+        catch (Exception e) {
+            throw new Exception("Error retrieving account" + e.getMessage());
+        }
     }
 
     // Deactivate account
-    public Account deactivateAccount(Long accountId, String makerId) throws Exception {
-        Optional<Account> accountOpt = accountRepository.findById(accountId);
-        // Prevent deactivation if account cannot be found
-        if (!accountOpt.isPresent()) {
-            throw new Exception("Account not found.");
+    public ResponseEntity<?> deactivateAccount(Map<String, String> accountData) throws Exception {
+        try {
+            Optional<Account> accountOpt = accountRepository.findById(accountId);
+            // Prevent deactivation if account cannot be found
+            if (!accountOpt.isPresent()) {
+                throw new Exception("Account not found.");
+            }
+            Account account = accountOpt.get();
+        
+            // Prevent deactivation if account balance is greater than zero
+            if (account.getBalance().compareTo(BigDecimal.ZERO) > 0) {
+                throw new Exception("Cannot deactivate account with balance greater than zero.");
+            }
+        
+            // Set bool active to false to deactivate account
+            account.setActive(false);
+            Account updatedAccount = accountRepository.save(account);
+        
+            // Log deactivation
+            String makerId = accountData.get("makerId");
+            Log logEntry = new Log("DEACTIVATE", account.toString(), updatedAccount.toString(), makerId, LocalDateTime.now());
+            logRepository.save(logEntry);
+
+            return ResponseEntity.ok(updatedAccount);
         }
-        Account account = accountOpt.get();
-        
-        // Prevent deactivation if account balance is greater than zero
-        if (account.getBalance().compareTo(BigDecimal.ZERO) > 0) {
-            throw new Exception("Cannot deactivate account with balance greater than zero.");
+        catch (Exception e) {
+            throw new Exception("Error Deactivating account" + e.getMessage());
         }
+    }
+
+    // Set active status
+    public ResponseEntity<?> setActive(Map<String, String> accountData) throws Exception {
+        try {
+            Optional<Account> accountOpt = accountRepository.findById(accountId);
+            // Throw error if account cannot be found
+            if (!accountOpt.isPresent()) {
+                throw new Exception("Account not found.");
+            }
+            Account account = accountOpt.get();
         
-        // Set bool active to false to deactivate account
-        account.setActive(false);
-        Account updatedAccount = accountRepository.save(account);
+            // Set bool active to either true or false
+            boolean active = Boolean.parseBoolean(accountData.get("active"));
+            account.setActive(active);
+            Account updatedAccount = accountRepository.save(account);
         
-        return updatedAccount;
+            // Log active status change
+            String makerId = accountData.get("makerId");
+            Log logEntry = new Log("SET_ACTIVE", "", updatedAccount.toString(), makerId, LocalDateTime.now());
+            logRepository.save(logEntry);
+
+            return ResponseEntity.ok(updatedAccount);
+        }
+        catch (Exception e) {
+            throw new Exception("Error setting active status" + e.getMessage());
+        }
+    }
+    
+    // Retrieve the ledger for a specific account
+    public ResponseEntity<?> getLedger(Map<String, String> accountData) {
+        try {
+            Long accountId = Long.parseLong(accountData.get("id"));
+            Object ledger = accountRepository.getLedgerByAccountId(accountId); // Ledger query goes here
+            if (ledger == null) {
+                return ResponseEntity.badRequest().body("Ledger not found.");
+            }
+            return ResponseEntity.ok(ledger);
+        }
+        catch (Exception e) {
+            throw new Exception("Error retrieving ledger" + e.getMessage());
+        }
+    }
+/*
+    // Retrieve all accounts (chart of accounts)
+    public List<Account> getAllAccounts() {
+        return accountRepository.findAll();
     }
 
     // Search for accounts by name or number
@@ -143,4 +221,5 @@ public class AccountService {
         // Implement search logic based on accountName and accountNumber
         return null; // null placeholder
     }
+*/
 }
