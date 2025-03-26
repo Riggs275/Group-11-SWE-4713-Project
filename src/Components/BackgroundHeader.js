@@ -101,12 +101,19 @@ export function ForgotPasswordHeader({children}){
 }
 
 export function AdminHomeHeader(){
+    const userID = localStorage.getItem("userID");
+    const userType = localStorage.getItem("userType");
+    const firstName = localStorage.getItem("firstName");
+    const lastName = localStorage.getItem("lastName");
+    console.log(localStorage)
     return(
         
         <div className='Home'>
             <NavBar/>
             <div className='PageContent'>
-                <p>Your person here</p>
+                <h1>{userID}</h1>
+                <h2>{userType}</h2>
+                <p>{firstName} {lastName}</p>
             </div>
         </div>
     );

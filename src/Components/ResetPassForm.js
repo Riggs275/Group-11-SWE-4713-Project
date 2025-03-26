@@ -43,8 +43,8 @@ export function ResetPassForm() {
             return;
         }
 
-        console.log("Form Data:", formData);
-        const result = await setNewPassword(formData);
+        console.log("Form Data:", {...formData,userID});
+        const result = await setNewPassword({...formData, userID});
         if (result.success) {
             navigate('/signin', { state: result.successMessage });
         }

@@ -25,11 +25,11 @@ root.render(
                 <Route path="/forgotpass" element={<ForgotPass/>} />
                 <Route path="/securityQ" element={<SecurityQ/>} />
                 <Route path="/setpassword" element={<ResetPassword/>}/>
-                <Route path="/adminhome" element={<AdminHomePage/>}/>
-                <Route path="/adminusers" element={<AdminUsers/>}/>
-                <Route path="/adminrequests" element={<AdminRequestPage/>}/>
-                <Route path="/addAccountAdmin" element={<AddAccount/>}/>
-                <Route path="/modifyAccountAdmin" element={<ModifyAccount/>}/>
+                <Route path="/admin/home" element={<AdminHomePage/>}/>
+                <Route path="/admin/users" element={<AdminUsers/>}/>
+                <Route path="/admin/requests" element={<AdminRequestPage/>}/>
+                <Route path="/admin/addAccountAdmin" element={<AddAccount/>}/>
+                <Route path="/admin/modifyAccountAdmin" element={<ModifyAccount/>}/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode> 

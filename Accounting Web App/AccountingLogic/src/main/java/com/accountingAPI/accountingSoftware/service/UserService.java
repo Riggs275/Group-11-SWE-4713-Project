@@ -38,6 +38,7 @@ public class UserService {
     public ResponseEntity<?> loginUser(Map<String, String> loginData) {
         String userNameid = loginData.get("userID");
         String sentPassword = loginData.get("password");
+        sentPassword = PasswordGenerator.hashPassword(sentPassword);
         Optional<Users> user = userRepository.findByUserID(userNameid);
 
         System.out.println("Received user_nameid: " + userNameid);
@@ -58,7 +59,7 @@ public class UserService {
             if (pass.isPresent()) {
                 Passwords passRec = pass.get();
                 if(passRec.getPasswordHash().equals(sentPassword)){
-                    return ResponseEntity.ok().body(Map.of("message", "Login successful", "userType", userRec.getUserType()));
+                    return ResponseEntity.ok().body(Map.of("message", "Login successful", "userType", userRec.getUserType(), "firstName",userRec.getFirstName(), "lastName", userRec.getLastName()));
                 }else{
                     return ResponseEntity.badRequest().body(Map.of("error", "Invalid credentials"));
                 }
@@ -108,6 +109,7 @@ public class UserService {
 
     public ResponseEntity<?> setNewPassword(Map<String,String> newPasswordData, String userID){
         String newPassword = newPasswordData.get("newPassword");
+        newPassword = PasswordGenerator.hashPassword(newPassword);
 
         if (newPassword == null || newPassword.trim().isEmpty()) {
             return ResponseEntity.badRequest().body(Map.of("error", "Password cannot be empty"));
@@ -121,6 +123,8 @@ public class UserService {
             
             if(passwordOptional.isPresent()){
                 Passwords password = passwordOptional.get();
+
+                password.addOldPasswords(password.getPasswordHash());
                 password.setPasswordHash(newPassword);
                 passwordRepository.save(password);
             }else{
@@ -193,11 +197,15 @@ public class UserService {
                     if (userNameID.equals("Invalid"))
                         return ResponseEntity.badRequest().body(Map.of("error", "userNameId didn't not generate successfully"));
 
-                String passwordHash = PasswordGenerator.generateRandomPassword();
-                if (passwordHash == null || passwordHash.isEmpty()) {
+                String uhashedpasswordHash = PasswordGenerator.generateRandomPassword();
+                if (uhashedpasswordHash == null || uhashedpasswordHash.isEmpty()) {
                     return ResponseEntity.badRequest().body(Map.of("error", "Generated password is invalid"));
                 }
                 //Create a password row
+                System.out.println("Unhashed:" +uhashedpasswordHash);
+
+                String passwordHash = PasswordGenerator.hashPassword(uhashedpasswordHash);
+
                 Passwords passwordRec = new Passwords(passwordHash, "");
                 passwordRec.setOldPasswords("");
                 System.out.println("PasswordHash:" +passwordHash);
@@ -219,7 +227,7 @@ public class UserService {
                 
                 // Send email with generated password
                 emailService.sendEmail(email, "Your New Account Password",
-                        "Hello " + userNameID + ",\n\nYour generated password is: " + passwordHash +
+                        "Hello " + userNameID + ",\n\nYour generated password is: " + uhashedpasswordHash +
                         "\n\nPlease log in and change your password immediately.");
 
                 return ResponseEntity.ok().body(Map.of(
@@ -261,7 +269,10 @@ public class UserService {
                 if (passwordHash == null || passwordHash.isEmpty()) {
                     return ResponseEntity.badRequest().body(Map.of("error", "Generated password is invalid"));
                 }
+                
                 //Create a password row
+                passwordHash = PasswordGenerator.hashPassword(passwordHash);
+
                 Passwords passwordRec = new Passwords(passwordHash, "");
                 passwordRec.setOldPasswords("");
                 System.out.println("PasswordHash:" +passwordHash);

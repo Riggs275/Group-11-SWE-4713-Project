@@ -17,4 +17,26 @@ public class PasswordGenerator{
         return pass.toString();
 
     }
+
+    public static String hashPassword(String password) {
+        int hash = 7;
+        for (int i = 0; i < password.length(); i++) {
+            char c = password.charAt(i);
+            hash = hash * 31 + (int) c;
+            hash = hash ^ (hash << 5); // basic bit mixing
+        }
+
+        // Convert hash integer to hex string manually
+        String hex = "";
+        int tempHash = hash;
+        for (int i = 0; i < 8; i++) {
+            int nibble = tempHash & 0xF; // get last 4 bits
+            char hexChar = (char)(nibble < 10 ? '0' + nibble : 'A' + (nibble - 10));
+            hex = hexChar + hex;
+            tempHash = tempHash >> 4;
+        }
+
+        return hex;
+    }
+
 }

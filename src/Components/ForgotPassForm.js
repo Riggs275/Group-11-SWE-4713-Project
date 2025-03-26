@@ -17,7 +17,7 @@ export function ForgotPassForm(){
         console.log("Form Data:", formData);
         const result = await forgotAccountRequest(formData);
         if (result.success){
-            navigate('/securityQ', {state: formData.userID})
+            navigate('/securityQ', {state: result.data})
         }
     };
 

@@ -18,8 +18,12 @@ export function LoginFom(){
         //Should move them to the admin or accountant page but not coded yet
         if(result.success){
             localStorage.setItem("userID", formData.userID)
-            localStorage.setItem("userType", result.userType)
-            navigate('/adminusers', {state: {userID: formData.userID}})
+            localStorage.setItem("userType", result.data.userType)
+            localStorage.setItem("firstName", result.data.firstName)
+            localStorage.setItem("lastName", result.data.lastName)
+                
+            const type = userType.toLowerCase();
+            navigate('/'+type+'/home', {state: {userID: formData.userID, userType: result.data.userType}})
         }
     };
     return(

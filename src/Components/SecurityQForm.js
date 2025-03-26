@@ -4,13 +4,12 @@ import { checkSecurityQ } from "./api";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export function SecurityQForm(){
+
     const [formData, setFormData] = useState({sec1: "", sec2: "", sec3: ""});
     const navigate = useNavigate();
     const location = useLocation();
-    const userID = location.state;
-    if(userID != null){
-            document.getElementById('welcomeUser').innerText = `Hey ${userID} we found your account answer these security questions to reset your password`
-    }
+    const userID = location.state.userID;
+    const sec1 = location.state.userQ1;
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,7 +17,7 @@ export function SecurityQForm(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData);
-        const result = await checkSecurityQ(formData, userID);
+        const result = await checkSecurityQ({...formData, userID});
         if (result.success){
             navigate('/setpassword', {state: userID})
         }
@@ -26,14 +25,14 @@ export function SecurityQForm(){
     return(
         <form onSubmit={handleSubmit}>
             <div>
-                <p className={"text"} id="welcomeUser">Hey UserID we found your account answer these security questions to reset your password</p>
+                <p className={"text"} id="welcomeUser">Hey {userID || "User"} we found your account answer these security questions to reset your password</p>
                 <div className={"TextBoxes"}>
                 <label >
                     Security Question 1:
                     <br/>
-                    What is your dogs name
+                    {sec1 || "What was your dogs name"}
                     <br/>
-                    <input type="text" name="securityQ1" className={"Box"} value={formData.sec1} onChange={handleChange} />
+                    <input type="text" name="sec1" className={"Box"} value={formData.sec1} onChange={handleChange} />
                 </label>
                 </div>
                     <br/>
@@ -41,9 +40,9 @@ export function SecurityQForm(){
                 <label>
                     Security Question 2:
                     <br/>
-                    What high school did you go to
+                    {"What high school did you go to"}
                     <br/>
-                    <input type="text" name="securityQ2" className={"Box"} value={formData.sec2} onChange={handleChange} />
+                    <input type="text" name="sec2" className={"Box"} value={formData.sec2} onChange={handleChange} />
                 </label>
                 </div>
                 <div className={"TextBoxes"}>
@@ -52,7 +51,7 @@ export function SecurityQForm(){
                     <br/>
                     Who was your childhood best friend
                     <br/>
-                    <input type="text" name="securityQ3" className={"Box"} value={formData.sec3} onChange={handleChange} />
+                    <input type="text" name="sec3" className={"Box"} value={formData.sec3} onChange={handleChange} />
                 </label>
                 </div>
                 <br/>
