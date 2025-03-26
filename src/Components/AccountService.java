@@ -12,16 +12,16 @@ public class AccountService {
     public ResponseEntity<?> addAccount(Map<String, String> accountData) throws Exception {
         try {
             String accountName = accountData.get("accountName");
-            String accountNumber = accountData.get("accountNumber");
+            int accountNumber = accountData.get("accountNumber");
             String accountDescription = accountData.get("accountDescription");
-            String normalSide = accountData.get("normalSide");
+            Char normalSide = accountData.get("normalSide");
             String accountCategory = accountData.get("accountCategory");
             String accountSubcategory = accountData.get("accountSubcategory");
             double initialBalance = new double(accountData.get("initialBalance"));
             double debit = new double(accountData.get("debit"));
             double credit = new double(accountData.get("credit"));
             double balance = new double(accountData.get("balance"));
-            String orderField = accountData.get("order");
+            int orderField = accountData.get("order");
             String statement = accountData.get("statement");
             String comment = accountData.get("comment");
             String userId = accountData.get("userId");
