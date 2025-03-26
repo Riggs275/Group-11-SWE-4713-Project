@@ -3,11 +3,10 @@ import java.time.LocalDateTime;
 public class Account {
     
     // Account variables
-    private Long id; // Unique account id for identification allows for more possible accounts
     private String accountName; // Account name the user can identitify
-    private String accountNumber; // Must have correct starting values
+    private int accountNumber; // Must have correct starting values
     private String accountDescription;
-    private String normalSide;
+    private Char normalSide;
     private String accountCategory; // e.g., Assets, Liabilities, Equity, Income, Expenses, etc.
     private String accountSubcategory; // Smaller categories within account categories
     private double initialBalance;
@@ -16,25 +15,19 @@ public class Account {
     private double balance;
     private LocalDateTime dateTimeAccountAdded;
     private String userId; // ID of the user who created the account
-    private String orderField; // e.g., cash can be 01
+    private int orderField; // e.g., cash can be 01
     private String statement; // e.g., IS (income statement), BS (balance sheet), RE (Retained Earnings statement)
     private String comment;
     private boolean active = true;
 
     // Getters and Setters
-    public Long getId() {
-        return id;
-    };
-    public void setId(Long newId) {
-        id = newId;
-    };
     public String getAccountName() {
         return accountName;
     };
     public void setAccountName(String newName) {
         accountName = newName;
     };
-    public String getAccountNumber() {
+    public int getAccountNumber() {
         return accountNumber;
     };
     public void setAccountNumber(String newNum) {
@@ -46,7 +39,7 @@ public class Account {
     public void setAccountDescription(String newDes) {
         accountDescription = newDes;
     };
-    public String getNormalSide() {
+    public char getNormalSide() {
         return normalSide;
     };
     public void setNormalSide(String newNorm) {
@@ -100,7 +93,7 @@ public class Account {
     public void setUserId(String newUserId) {
         userId = newUserId
     };
-    public String getOrderField() {
+    public int getOrderField() {
         return orderField;
     };
     public void setOrderField(String newOrderField) {
