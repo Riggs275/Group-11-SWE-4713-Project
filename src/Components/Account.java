@@ -1,3 +1,5 @@
+package com.accountingAPI.accountingSoftware.components;
+
 import java.time.LocalDateTime;
 
 public class Account {
