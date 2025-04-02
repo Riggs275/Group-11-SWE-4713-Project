@@ -52,7 +52,6 @@ public class UserService {
                 return ResponseEntity.badRequest().body(Map.of("error", "Your account is disabled contact your admin to reactivate"));
 
             Optional<Passwords> pass = passwordRepository.findById(userRec.getPassRef()); 
-            
 
             System.out.print(pass.toString());
 
