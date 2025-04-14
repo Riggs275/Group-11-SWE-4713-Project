@@ -15,7 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "RequestedUser") // Match your actual database table name
+@Table(name = "RequestedUser") // Replace with actual table name
 @Getter
 @Setter
 @NoArgsConstructor
