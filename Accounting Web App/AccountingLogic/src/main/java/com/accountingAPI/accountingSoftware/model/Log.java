@@ -1,12 +1,25 @@
-package com.accountingAPI.accountingSoftware.components;
+package com.accountingAPI.accountingSoftware.model;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column; // ✅ Needed for GenerationType.IDENTITY
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "logs")
 public class Log {
 
+    public Log(String newEventType, String newFromValue,String newToValue, String newChandedBy, LocalDateTime newdateModified){
+        eventType = newEventType;
+        fromValue = newFromValue;
+        toValue = newToValue;
+        changedBy = newChandedBy;
+        dateModified = newdateModified;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "event_id")
@@ -31,37 +44,48 @@ public class Log {
     public Integer getEventID() {
         return eventID;
     }
+
     public void setEventID(Integer id) {
-        id = eventID;
+        this.eventID = id;
     }
+
     public String getEventType() {
         return eventType;
     }
+
     public void setEventType(String type) {
-        type = eventType;
+        this.eventType = type;
     }
+
     public LocalDateTime getDateModified() {
         return dateModified;
     }
+
     public void setDateModified(LocalDateTime date) {
-        date = dateModified;
+        this.dateModified = date;
     }
+
     public String getChangedBy() {
         return changedBy;
     }
+
     public void setChangedBy(String changed) {
-        changed = changedBy;
+        this.changedBy = changed;
     }
+
     public String getFromValue() {
         return fromValue;
     }
+
     public void setFromValue(String value) {
-        value = fromValue;
+        this.fromValue = value;
     }
+
     public String getToValue() {
         return toValue;
     }
+
     public void setToValue(String value) {
-        value = toValue;
+        this.toValue = value;
     }
 }

@@ -1,7 +1,7 @@
 package com.accountingAPI.accountingSoftware.service;
 
-import java.util.Date;
 import java.util.Map;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +43,7 @@ public class AccountService {
             }
         
             // Validate account number format (no decimals or alphanumeric characters) and other fields
-            if (!accountNumber.matches("^[0-9]+$")) {
-                throw new Exception("Invalid account number format. Only numeric digits are allowed.");
-            }
-        
+         
             // Create and populate an Account object
             Account account = new Account();
             account.setAccountName(accountName);
@@ -59,7 +56,7 @@ public class AccountService {
             account.setDebit(debit);
             account.setCredit(credit);
             account.setBalance(balance);
-            account.setDateTimeAccountAdded(date.now());
+            account.setDateTimeAccountAdded();
             account.setUserId(userId);
             account.setOrderField(orderField);
             account.setStatement(statement);
@@ -83,7 +80,9 @@ public class AccountService {
     // Edit account details
     public ResponseEntity<?> editAccount(Map<String, String> accountData) throws Exception {
         try {
-            Optional<Account> currentAccountOpt = accountRepository.findById(account.getId());
+            String accountId = accountData.get("id");
+
+            Optional<Account> currentAccountOpt = accountRepository.findById(accountId);
             if (!currentAccountOpt.isPresent()) {
                 throw new Exception("Account not found.");
             }
@@ -135,7 +134,8 @@ public class AccountService {
     // Retrieve individual account
     public ResponseEntity<?> viewAccount(Map<String, String> accessorData) {
         try {
-            Long accountId = Long.parseLong(accessorData.get("id"));
+            String accountId = accessorData.get("id");
+            
             Optional<Account> accountOpt = accountRepository.findById(accountId);
             if (accountOpt.isPresent()) {
                 return ResponseEntity.ok(accountOpt.get());
@@ -152,16 +152,18 @@ public class AccountService {
     // Deactivate account
     public ResponseEntity<?> deactivateAccount(Map<String, String> accountData) throws Exception {
         try {
+            String accountId = accountData.get("id");
+
             Optional<Account> accountOpt = accountRepository.findById(accountId);
             // Prevent deactivation if account cannot be found
             if (!accountOpt.isPresent()) {
-                throw new Exception("Account not found.");
+                return ResponseEntity.badRequest().body(Map.of("error","Account not found."));
             }
             Account account = accountOpt.get();
         
             // Prevent deactivation if account balance is greater than zero
-            if (account.getBalance().compareTo(BigDecimal.ZERO) > 0) {
-                throw new Exception("Cannot deactivate account with balance greater than zero.");
+            if (account.getBalance() > 0) {
+                return ResponseEntity.badRequest().body(Map.of("error","Cannot deactivate account with balance greater than zero."));
             }
         
             // Set bool active to false to deactivate account
@@ -176,13 +178,15 @@ public class AccountService {
             return ResponseEntity.ok(updatedAccount);
         }
         catch (Exception e) {
-            throw new Exception("Error Deactivating account" + e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error","Error Deactivating account" + e.getMessage()));
         }
     }
 
     // Set active status
     public ResponseEntity<?> setActive(Map<String, String> accountData) throws Exception {
         try {
+            String accountId = accountData.get("id");
+
             Optional<Account> accountOpt = accountRepository.findById(accountId);
             // Throw error if account cannot be found
             if (!accountOpt.isPresent()) {
@@ -203,14 +207,14 @@ public class AccountService {
             return ResponseEntity.ok(updatedAccount);
         }
         catch (Exception e) {
-            throw new Exception("Error setting active status" + e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error","Error setting active status" + e.getMessage()));
         }
     }
     
     // Retrieve the ledger for a specific account
     public ResponseEntity<?> getLedger(Map<String, String> accountData) {
         try {
-            Long accountId = Long.parseLong(accountData.get("id"));
+            String accountId = accountData.get("id");
             Object ledger = accountRepository.getLedgerByAccountId(accountId); // Ledger query goes here
             if (ledger == null) {
                 return ResponseEntity.badRequest().body("Ledger not found.");
@@ -218,7 +222,7 @@ public class AccountService {
             return ResponseEntity.ok(ledger);
         }
         catch (Exception e) {
-            throw new Exception("Error retrieving ledger" + e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error","Error retrieving ledger" + e.getMessage()));
         }
     }
 /*
