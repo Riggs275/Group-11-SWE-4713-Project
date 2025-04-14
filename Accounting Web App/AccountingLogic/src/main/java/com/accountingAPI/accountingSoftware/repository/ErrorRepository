@@ -1,0 +1,15 @@
+package com.accountingAPI.accountingSoftware.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.accountingAPI.accountingSoftware.model.ErrorMessage;
+
+
+@Repository
+public interface ErrorRepository extends JpaRepository<ErrorMessage, Integer> {
+    
+    
+}
