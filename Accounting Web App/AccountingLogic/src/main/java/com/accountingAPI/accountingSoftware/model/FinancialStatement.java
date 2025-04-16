@@ -1,4 +1,4 @@
-package com.accountingAPI.accountingSoftware.components;
+package com.accountingAPI.accountingSoftware.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -3,6 +3,7 @@ package com.accountingAPI.accountingSoftware.service;
 import java.util.Map;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,14 +11,22 @@ import org.springframework.stereotype.Service;
 
 import com.accountingAPI.accountingSoftware.repository.LogRepository;
 import com.accountingAPI.accountingSoftware.repository.AccountRepository;
-import com.accountingAPI.accountingSoftware.model.Account;
+import com.accountingAPI.accountingSoftware.model.JournalLine;
 import com.accountingAPI.accountingSoftware.model.Log;
+import com.accountingAPI.accountingSoftware.repository.JournalLineRepository;
+import com.accountingAPI.accountingSoftware.model.Account;
+
 @Service
 public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
+
     @Autowired
     private LogRepository logRepository;
+
+    @Autowired
+    private JournalLineRepository journalLineRepository;
+
 
     // Add new account
     public ResponseEntity<?> addAccount(Map<String, String> accountData) throws Exception {
@@ -38,7 +47,7 @@ public class AccountService {
             String userId = accountData.get("userId");
         
             // Do not allow duplicate account names or numbers
-            if (accountRepository.findByAccountName(accountName).isPresent() || accountRepository.findByAccountNumber(accountNumber).isPresent()) {
+            if (accountRepository.findByAccountName(accountName).isPresent() || accountRepository.findByAccountID(accountNumber).isPresent()) {
                 throw new Exception("Duplicate account name or account number.");
             }
         
@@ -80,9 +89,9 @@ public class AccountService {
     // Edit account details
     public ResponseEntity<?> editAccount(Map<String, String> accountData) throws Exception {
         try {
-            String accountId = accountData.get("id");
+            String accountName = accountData.get("accountName");
 
-            Optional<Account> currentAccountOpt = accountRepository.findById(accountId);
+            Optional<Account> currentAccountOpt = accountRepository.findByAccountName(accountName);
             if (!currentAccountOpt.isPresent()) {
                 throw new Exception("Account not found.");
             }
@@ -134,9 +143,9 @@ public class AccountService {
     // Retrieve individual account
     public ResponseEntity<?> viewAccount(Map<String, String> accessorData) {
         try {
-            String accountId = accessorData.get("id");
+            String accountName = accessorData.get("accountName");
             
-            Optional<Account> accountOpt = accountRepository.findById(accountId);
+            Optional<Account> accountOpt = accountRepository.findByAccountName(accountName);
             if (accountOpt.isPresent()) {
                 return ResponseEntity.ok(accountOpt.get());
             }
@@ -152,9 +161,9 @@ public class AccountService {
     // Deactivate account
     public ResponseEntity<?> deactivateAccount(Map<String, String> accountData) throws Exception {
         try {
-            String accountId = accountData.get("id");
+            String accountName = accountData.get("accountName");
 
-            Optional<Account> accountOpt = accountRepository.findById(accountId);
+            Optional<Account> accountOpt = accountRepository.findByAccountName(accountName);
             // Prevent deactivation if account cannot be found
             if (!accountOpt.isPresent()) {
                 return ResponseEntity.badRequest().body(Map.of("error","Account not found."));
@@ -185,9 +194,9 @@ public class AccountService {
     // Set active status
     public ResponseEntity<?> setActive(Map<String, String> accountData) throws Exception {
         try {
-            String accountId = accountData.get("id");
+            String accountName = accountData.get("accountName");
 
-            Optional<Account> accountOpt = accountRepository.findById(accountId);
+            Optional<Account> accountOpt = accountRepository.findByAccountName(accountName);
             // Throw error if account cannot be found
             if (!accountOpt.isPresent()) {
                 throw new Exception("Account not found.");
@@ -212,19 +221,27 @@ public class AccountService {
     }
     
     // Retrieve the ledger for a specific account
+
     public ResponseEntity<?> getLedger(Map<String, String> accountData) {
         try {
-            String accountId = accountData.get("id");
-            Object ledger = accountRepository.getLedgerByAccountId(accountId); // Ledger query goes here
-            if (ledger == null) {
-                return ResponseEntity.badRequest().body("Ledger not found.");
+            String accountName = accountData.get("accountName");
+            if (accountName == null || accountName.isEmpty()) {
+                return ResponseEntity.badRequest().body("Account name is required.");
             }
-            return ResponseEntity.ok(ledger);
-        }
-        catch (Exception e) {
-            return ResponseEntity.badRequest().body(Map.of("error","Error retrieving ledger" + e.getMessage()));
+
+            List<JournalLine> lines = journalLineRepository.findByAccountName(accountName);
+
+            if (lines.isEmpty()) {
+                return ResponseEntity.ok("No ledger entries found for account: " + accountName);
+            }
+
+            // Optional: Convert to a DTO or summary object if needed
+            return ResponseEntity.ok(lines);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Error retrieving ledger: " + e.getMessage()));
         }
     }
+
 /*
     // Retrieve all accounts (chart of accounts)
     public List<Account> getAllAccounts() {
