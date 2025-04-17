@@ -1,4 +1,4 @@
-package com.accountingAPI.accountingSoftware.repositories;
+package com.accountingAPI.accountingSoftware.repository;
 
 import com.accountingAPI.accountingSoftware.components.FinancialStatement;
 import org.springframework.data.jpa.repository.JpaRepository;
