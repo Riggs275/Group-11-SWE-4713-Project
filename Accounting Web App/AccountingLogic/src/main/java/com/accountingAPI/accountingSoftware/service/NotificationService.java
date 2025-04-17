@@ -12,10 +12,17 @@ public class NotificationService {
     @Autowired
     private UserRepository userRepo;
 
-    public ResponseEntity<?> notifyManager(String message) {
-        //
-        // Method will need to find users by userType == "Manager" and notify
-        //
-        return ResponseEntity.ok("Managers notified");
+    public void notifyManager(String message) {
+        List<User> managerUsers = userRepository.findByRole("Manager");
+        
+        for (int i = 0; i < managerUsers.size(); i++) {
+            User managerUser = managerUsers.get(i);
+            SimpleMailMessage notif = new SimpleMailMessage();
+            notif.setTo(managerUser.getEmail());
+            notif.setSubject("Radiant Flow Accounting");
+            notif.setText(notificationMessage);
+
+            mailSender.send(notif);
+        }
     }
 }
