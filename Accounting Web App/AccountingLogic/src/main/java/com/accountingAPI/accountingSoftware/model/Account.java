@@ -1,6 +1,8 @@
 package com.accountingAPI.accountingSoftware.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -61,7 +63,18 @@ public class Account {
     @Column(name = "active")
     private boolean isActive = true;
 
+    @Column(name = "ledger")
+    private List<JournalLine> Ledger = new ArrayList<>();
+
     // Getters and Setters
+
+    public List<JournalLine> getLedger(){
+        return Ledger;
+    }
+
+    public void addLedger(JournalLine j){
+        Ledger.add(j);
+    }
     public String getAccountName() {
         return accountName;
     }

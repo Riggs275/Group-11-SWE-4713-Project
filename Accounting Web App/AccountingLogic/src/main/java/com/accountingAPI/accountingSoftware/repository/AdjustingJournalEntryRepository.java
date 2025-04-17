@@ -1,6 +1,6 @@
-package com.accountingAPI.accountingSoftware.repositories;
+package com.accountingAPI.accountingSoftware.repository;
 
-import com.accountingAPI.accountingSoftware.components.AdjustingJournalEntry;
+import com.accountingAPI.accountingSoftware.model.AdjustingJournalEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

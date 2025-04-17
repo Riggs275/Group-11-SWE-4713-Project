@@ -1,6 +1,6 @@
 package com.accountingAPI.accountingSoftware.repositories;
 
-import com.accountingAPI.accountingSoftware.components.ErrorMessage;
+import com.accountingAPI.accountingSoftware.model.ErrorMessage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

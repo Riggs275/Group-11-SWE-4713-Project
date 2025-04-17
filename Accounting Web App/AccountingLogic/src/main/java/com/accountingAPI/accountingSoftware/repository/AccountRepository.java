@@ -19,5 +19,5 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     
     @Query("SELECT a FROM Account a WHERE a.account_number = :accountID")
     Optional<Account> findByAccountID(@Param("accountID") int accountID);
-
+    
 }

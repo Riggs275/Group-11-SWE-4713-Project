@@ -11,6 +11,9 @@ public class JournalLine {
     @Column(name = "line_id")
     private int lineId;
 
+    @Column(name="entriesID", nullable = false)
+    private int entriesID;
+
     @Column(name = "account_name", nullable = false)
     private String accountName;
 
@@ -28,6 +31,12 @@ public class JournalLine {
     public JournalLine() {}
 
     // Getters and Setters
+    public int getEntryID(){
+        return entriesID;
+    }
+    public void setEntryID(int parentID){
+        entriesID = parentID;
+    }
     public int getLineId() {
         return lineId;
     }

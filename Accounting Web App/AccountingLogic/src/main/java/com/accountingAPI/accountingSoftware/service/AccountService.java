@@ -1,20 +1,19 @@
 package com.accountingAPI.accountingSoftware.service;
 
-import java.util.Map;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.accountingAPI.accountingSoftware.repository.LogRepository;
-import com.accountingAPI.accountingSoftware.repository.AccountRepository;
+import com.accountingAPI.accountingSoftware.model.Account;
 import com.accountingAPI.accountingSoftware.model.JournalLine;
 import com.accountingAPI.accountingSoftware.model.Log;
-import com.accountingAPI.accountingSoftware.repository.JournalLineRepository;
-import com.accountingAPI.accountingSoftware.model.Account;
+import com.accountingAPI.accountingSoftware.repository.AccountRepository;
+import com.accountingAPI.accountingSoftware.repository.LogRepository;
 
 @Service
 public class AccountService {
@@ -24,8 +23,6 @@ public class AccountService {
     @Autowired
     private LogRepository logRepository;
 
-    @Autowired
-    private JournalLineRepository journalLineRepository;
 
 
     // Add new account
@@ -229,14 +226,20 @@ public class AccountService {
                 return ResponseEntity.badRequest().body("Account name is required.");
             }
 
-            List<JournalLine> lines = journalLineRepository.findByAccountName(accountName);
+            Optional<Account> accountOpt = accountRepository.findByAccountName(accountName);
+            // Throw error if account cannot be found
+            if (!accountOpt.isPresent()) {
+                throw new Exception("Account not found.");
+            }
+            Account account = accountOpt.get();
 
-            if (lines.isEmpty()) {
+            List<JournalLine> ledger = account.getLedger();
+            if (ledger.isEmpty()) {
                 return ResponseEntity.ok("No ledger entries found for account: " + accountName);
             }
 
             // Optional: Convert to a DTO or summary object if needed
-            return ResponseEntity.ok(lines);
+            return ResponseEntity.ok(ledger);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(Map.of("error", "Error retrieving ledger: " + e.getMessage()));
         }
