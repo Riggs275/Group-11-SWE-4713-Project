@@ -1,0 +1,79 @@
+package com.accountingAPI.accountingSoftware.service;
+
+import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.accountingAPI.accountingSoftware.model.AdjustingJournal;
+
+@Service
+public class AdjustingJournalService {
+
+    private List<AdjustingJournalEntry> JournalEntries = new List<AdjustingJournalEntry>();
+
+    public String createAdjustingEntry(int EntryId, String userSubmitted, String currentStatus, String addedComment, List<JournalLine> journalLines, List<LedgerEntry> LedgerEntries) {
+
+        AdjustingJournalEntry newEntry = new AdjustingJournalEntry();
+
+        try {
+            newEntry.setEntryId(EntryId);
+            newEntry.setDate(LocalDateTime.now());
+            newEntry.setSubmittedBy(userSubmitted);
+            newEntry.setStatus(currentStatus);
+            newEntry.setComment(addedComment);
+            newEntry.setLines(journalLines);
+            newEntry.setLedgerEntries(ledgerEntries);
+            approveAdjustingEntry();
+            submitAdjustingEntry(newEntry);
+        }
+        Catch (Exception ex) {
+            rejectAdjustingEntry();
+            break;
+        }
+
+        return newEntry();
+    }
+
+    public bool approveAdjustingEntry() {
+        return true;
+    }
+
+    public bool rejectAdjustingEntry() {
+        return false;
+    }
+
+    public void cancelAdjustingEntry() {
+
+    }
+
+    public void submitAdjustingEntry(AdjustingJournalEntry newEntry) {
+        JournalEntries.add(newEntry);
+    }
+
+    public List<String> getAdjustingEntryStatus() {
+        List<String> EntryStatuses = new List<String>();
+
+        foreach (AdjustingJournalEntry entry in JournalEntries) {
+            EntryStatuses.add(entry.getStatus());
+        }
+
+        return EntryStatuses;
+    }
+
+    public AdjustingJournalEntry searchAdjustingEntries(int SearchedEntryId) {
+
+        foreach (AdjustingJournalEntry entry in JournalEntries) {
+            if(entry.getEntryId() == SearchedEntryId) {
+                return entry;
+            }
+        }
+
+        return new AdjustingJournalEntry;
+    }
+
+    public void attachSourceDocuments() {
+
+    }
+}
