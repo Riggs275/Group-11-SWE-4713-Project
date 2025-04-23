@@ -28,24 +28,24 @@ public class Attachment {
         return attachmentId;
     }
     public void setAttachmentId(int attachmentIdSet) {
-        attachmentIdSet = attachmentId;
+        attachmentId = attachmentIdSet;
     }
     public String getFileName() {
         return fileName;
     }
     public void setFileName(String fileNameSet) {
-        fileNameSet = fileName;
+        fileName = fileNameSet;
     }
     public String getFileType() {
         return fileType;
     }
     public void setFileType(String fileTypeSet) {
-        fileTypeSet = fileType;
+        fileType = fileTypeSet;
     }
     public byte[] getFileData() {
         return fileData;
     }
     public void setFileData(byte[] fileDataSet) {
-        fileDataSet = fileData;
+        fileData = fileDataSet;
     }
 }
