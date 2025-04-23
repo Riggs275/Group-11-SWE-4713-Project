@@ -25,18 +25,18 @@ public class ErrorMessage {
         return errorId;
     }
     public void setErrorId(int id) {
-        id = errorId;
+        errorId = id;
     }
     public String getMessage() {
         return message;
     }
     public void setMessage(String newMessage) {
-        newMessage = message;
+        message = newMessage;
     }
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
     public void setTimestamp(LocalDateTime timestampSet) {
-        timestampSet = timestamp;
+        timestamp = timestampSet;
     }
 }
