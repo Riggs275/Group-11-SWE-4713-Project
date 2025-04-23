@@ -42,42 +42,42 @@ public class JournalEntry {
         return entryId;
     }
     public void setEntryId(int id) {
-        id = entryId;
+        entryId = id;
     }
     public LocalDate getDate() {
         return date;
     }
     public void setDate(LocalDate dateSet) {
-        dateSet = date;
+        date = dateSet;
     }
     public String getSubmittedBy() {
         return submittedBy;
     }
     public void setSubmittedBy(String userSubmitted) {
-        userSubmitted = submittedBy;
+        submittedBy = userSubmitted;
     }
     public String getStatus() {
         return status;
     }
     public void setStatus(String statusSet) {
-        statusSet = status;
+        status = statusSet;
     }
     public String getComment() {
         return comment;
     }
     public void setComment(String newComment) {
-        newComment = comment;
+        comment = newComment;
     }
     public List<JournalLine> getLines() {
         return lines;
     }
     public void setLines(List<JournalLine> addLines) {
-        addLines = lines;
+       lines = addLines;
     }
     public List<ErrorMessage> getErrorMessages() {
         return errorMessages;
     }
     public void setErrorMessages(List<ErrorMessage> error) {
-        error = errorMessages;
+        errorMessages = error;
     }
 }
