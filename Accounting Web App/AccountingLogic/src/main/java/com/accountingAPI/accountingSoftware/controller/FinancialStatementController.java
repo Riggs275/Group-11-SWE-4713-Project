@@ -1,6 +1,6 @@
-package com.accountingAPI.accountingSoftware.controllers;
+package com.accountingAPI.accountingSoftware.controller;
 
-import com.accountingAPI.accountingSoftware.services.FinancialStatementService;
+import com.accountingAPI.accountingSoftware.service.FinancialStatementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
