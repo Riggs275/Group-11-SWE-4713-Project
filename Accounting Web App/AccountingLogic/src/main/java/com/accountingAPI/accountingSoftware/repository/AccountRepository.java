@@ -11,7 +11,7 @@ import com.accountingAPI.accountingSoftware.model.Account;
 
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Integer> {
+public interface AccountRepository extends JpaRepository<Account, java.lang.String> {
     
     
     @Query("SELECT a FROM Account a WHERE a.account_name = :accountName")
