@@ -6,12 +6,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.stereotype.Service;
 
 import com.accountingAPI.accountingSoftware.model.FinancialStatement;
 import com.accountingAPI.accountingSoftware.repository.FinancialStatementRepository;
 import com.accountingAPI.accountingSoftware.model.LedgerEntry;
 import com.accountingAPI.accountingSoftware.repository.LedgerRepository;
+import com.accountingAPI.accountingSoftware.service.PdfGeneratorService;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -44,7 +46,7 @@ public class FinancialStatementService {
         financialstatement.setToDate(to);
         financialstatement.setGeneratedBy(data.get("generatedBy"));
         
-        financialstatement.setFileData(pdfGenerator.generateTrialBalancePdf(from, to, debits, credits));
+        financialstatement.setFileData(pdfGenerator.generateTrialBalance(from, to, debits, credits));
         statementRepository.save(financialstatement);
 
         return ResponseEntity.ok()
@@ -63,7 +65,7 @@ public class FinancialStatementService {
         financialstatement.setFromDate(from);
         financialstatement.setToDate(to);
         financialstatement.setGeneratedBy(data.get("generatedBy"));
-        financialstatement.setFileData(pdfGenerator.generateIncomeStatementPdf(from, to, revenue, expenses));
+        financialstatement.setFileData(pdfGenerator.generateIncomeStatement(from, to, revenue, expenses));
         statementRepository.save(financialstatement);
 
         return ResponseEntity.ok()
@@ -81,7 +83,7 @@ public class FinancialStatementService {
         financialstatement.setFromDate(LocalDate.parse(data.get("fromDate")));
         financialstatement.setToDate(to);
         financialstatement.setGeneratedBy(data.get("generatedBy"));
-        financialstatement.setFileData(pdfGenerator.generateBalanceSheetPdf(to, assets, liabilities));
+        financialstatement.setFileData(pdfGenerator.generateBalanceSheet(to, assets, liabilities));
         statementRepository.save(financialstatement);
 
         return ResponseEntity.ok()
@@ -103,7 +105,7 @@ public class FinancialStatementService {
         financialstatement.setFromDate(from);
         financialstatement.setToDate(to);
         financialstatement.setGeneratedBy(data.get("generatedBy"));
-        financialstatement.setFileData(pdfGenerator.generateRetainedEarningsPdf(from, to, netIncome, dividends, retainedEarnings));
+        financialstatement.setFileData(pdfGenerator.generateRetainedEarnings(from, to, netIncome, dividends, retainedEarnings));
         statementRepository.save(financialstatement);
 
         return ResponseEntity.ok()
@@ -119,25 +121,27 @@ public class FinancialStatementService {
         return ResponseEntity.ok(list);
     }
 
-    public ResponseEntity<?> emailStatement(Map<String, String> data) {
+    public BodyBuilder emailStatement(Map<String, String> data) throws Exception {
         int id = Integer.parseInt(data.get("statementId"));
-        FinancialStatement statementRepository = statementRepository.findById(id).orElseThrow(() -> new RuntimeException("Statement not found"));
+        String type = statementRepository.getType(id);
+        byte[] fileData = statementRepository.getFileData(id);
         emailService.sendEmailWithAttachment(
             data.get("recipientEmail"),
-            "Your " + statementRepository.getType(),
-            "Please find attached your " + statementRepository.getType(),
-            statementRepository.getFileData(),
-            statementRepository.getType().toLowerCase().replace(" ", "_") + ".pdf"
+            "Your " + type,
+            "Please find attached your " + type,
+            fileData,
+            type.toLowerCase().replace(" ", "_") + ".pdf"
         );
         return ResponseEntity.ok();
     }
     public ResponseEntity<?> downloadStatement(Map<String, String> data) {
         int id = Integer.parseInt(data.get("statementId"));
-        FinancialStatement statementRepository = statementRepository.findById(id).orElseThrow(() -> new RuntimeException("Statement not found"));
+        String type = statementRepository.getType(id);
+        byte[] fileData = statementRepository.getFileData(id);
         return ResponseEntity.ok()
             .header(HttpHeaders.CONTENT_DISPOSITION,
-                    "attachment; filename=" + statementRepository.getType().toLowerCase().replace(" ", "_") + ".pdf")
+                    "attachment; filename=" + type.toLowerCase().replace(" ", "_") + ".pdf")
             .contentType(MediaType.APPLICATION_PDF)
-            .body(statementRepository.getFileData());
+            .body(fileData);
     }
 }
