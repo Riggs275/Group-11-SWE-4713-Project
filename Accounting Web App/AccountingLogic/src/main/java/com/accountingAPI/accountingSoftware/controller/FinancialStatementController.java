@@ -40,7 +40,7 @@ public class FinancialStatementController {
     }
 
     @PostMapping("/email")
-    public ResponseEntity<?> emailStatement(@RequestBody Map<String, String> data) {
+    public ResponseEntity<?> emailStatement(@RequestBody Map<String, String> data) throws Exception {
         return (ResponseEntity<?>) financialStatementService.emailStatement(data);
     }
 
