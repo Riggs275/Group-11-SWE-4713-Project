@@ -1,7 +1,8 @@
 package com.accountingAPI.accountingSoftware.model;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "error_messages")
