@@ -1,6 +1,6 @@
 package com.accountingAPI.accountingSoftware.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "journal_lines")
