@@ -41,7 +41,7 @@ public class FinancialStatementController {
 
     @PostMapping("/email")
     public ResponseEntity<?> emailStatement(@RequestBody Map<String, String> data) {
-        return financialStatementService.emailStatement(data);
+        return (ResponseEntity<?>) financialStatementService.emailStatement(data);
     }
 
     @PostMapping("/download")
