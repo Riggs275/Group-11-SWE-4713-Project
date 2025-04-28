@@ -1,7 +1,11 @@
 package com.accountingAPI.accountingSoftware.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import com.accountingAPI.accountingSoftware.repository.UserRepository;
