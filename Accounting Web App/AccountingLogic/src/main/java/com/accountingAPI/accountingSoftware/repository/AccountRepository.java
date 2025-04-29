@@ -14,10 +14,11 @@ import com.accountingAPI.accountingSoftware.model.Account;
 public interface AccountRepository extends JpaRepository<Account, java.lang.String> {
     
     
-    @Query("SELECT a FROM Account a WHERE a.account_name = :accountName")
-    Optional<Account> findByAccountName(@Param("accountName") String accountName);
+    Optional<Account> findByAccountName(String accountName);
     
-    @Query("SELECT a FROM Account a WHERE a.account_number = :accountID")
-    Optional<Account> findByAccountID(@Param("accountID") int accountID);
+    Optional<Account> findByAccountNumber(int accountNumber);
+
+    @Query("SELECT a FROM Account a WHERE a.accountNumber = :acctNum")
+    Optional<Account> findByAccountID(@Param("acctNum") int accountNumber);
 
 }
