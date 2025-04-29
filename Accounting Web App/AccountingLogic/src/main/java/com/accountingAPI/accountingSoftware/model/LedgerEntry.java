@@ -33,6 +33,9 @@ public class LedgerEntry {
     @Column(name = "post_reference")
     private String postReference;
 
+    @Column(name = "account_category")
+    private String accountCategory;
+
     public LedgerEntry() {}
 
     // Getters and Setters
