@@ -8,10 +8,12 @@ import jakarta.persistence.*;
 @Table(name = "error_messages")
 public class ErrorMessage {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "error_id")
     private int errorId;
+
+    @Column(name = "entry_id", nullable = false)
+    private int entryId;
 
     @Column(name = "message", nullable = false)
     private String message;
@@ -39,5 +41,11 @@ public class ErrorMessage {
     }
     public void setTimestamp(LocalDateTime timestampSet) {
         timestamp = timestampSet;
+    }
+    public Integer getEntryId() {
+        return entryId;
+    }
+    public void setEntryId(Integer id) {
+        entryId = id;
     }
 }
