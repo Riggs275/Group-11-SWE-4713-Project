@@ -13,6 +13,9 @@ public class Account {
     
     // Account variables
     @Id
+    @Column(name = "account_id")
+    private String accountId; // ID of the account
+
     @Column(name = "account_name", nullable = false, unique = true)
     private String accountName; // Account name the user can identitify
     
@@ -62,6 +65,12 @@ public class Account {
     private boolean isActive = true;
 
     // Getters and Setters
+    public String getAccountId() {
+        return accountId;
+    }
+    public void setAccountId(String newAccountId) {
+        accountId = newAccountId;
+    }
     public String getAccountName() {
         return accountName;
     }
