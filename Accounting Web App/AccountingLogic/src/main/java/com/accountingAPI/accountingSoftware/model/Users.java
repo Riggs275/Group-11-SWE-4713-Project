@@ -136,6 +136,14 @@ public class Users {
         email = newEmail;
     }
 
+    private String role;
+     public String getRole(){
+        return role;
+    }
+    public void setRole(String roleSet){
+        role = roleSet;
+    }
+
     @PrePersist
     protected void onCreate() {
         // Automatically set DateAdded when creating a new user
