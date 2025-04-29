@@ -1,12 +1,15 @@
 package com.accountingAPI.accountingSoftware.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.accountingAPI.accountingSoftware.model.Attachment;
 import com.accountingAPI.accountingSoftware.model.JournalEntry;
 import com.accountingAPI.accountingSoftware.repository.JournalEntryRepository;
 import com.accountingAPI.accountingSoftware.repository.AttachmentRepository;

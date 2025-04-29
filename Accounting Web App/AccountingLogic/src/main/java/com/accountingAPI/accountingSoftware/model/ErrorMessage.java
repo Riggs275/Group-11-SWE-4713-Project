@@ -1,16 +1,19 @@
 package com.accountingAPI.accountingSoftware.model;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "error_messages")
 public class ErrorMessage {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "error_id")
     private int errorId;
+
+    @Column(name = "entry_id", nullable = false)
+    private int entryId;
 
     @Column(name = "message", nullable = false)
     private String message;
@@ -25,18 +28,24 @@ public class ErrorMessage {
         return errorId;
     }
     public void setErrorId(int id) {
-        id = errorId;
+        errorId = id;
     }
     public String getMessage() {
         return message;
     }
     public void setMessage(String newMessage) {
-        newMessage = message;
+        message = newMessage;
     }
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
     public void setTimestamp(LocalDateTime timestampSet) {
-        timestampSet = timestamp;
+        timestamp = timestampSet;
+    }
+    public Integer getEntryId() {
+        return entryId;
+    }
+    public void setEntryId(Integer id) {
+        entryId = id;
     }
 }

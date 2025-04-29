@@ -1,6 +1,6 @@
 package com.accountingAPI.accountingSoftware.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -33,6 +33,9 @@ public class LedgerEntry {
     @Column(name = "post_reference")
     private String postReference;
 
+    @Column(name = "account_category")
+    private String accountCategory;
+
     public LedgerEntry() {}
 
     // Getters and Setters
@@ -40,48 +43,48 @@ public class LedgerEntry {
         return ledgerId;
     }
     public void setLedgerId(int ledgerIdSet) {
-        ledgerIdSet = ledgerId;
+        ledgerId = ledgerIdSet;
     }
     public String getAccountName() {
         return accountName;
     }
     public void setAccountName(String accountNameSet) {
-        accountNameSet = accountName;
+        accountName = accountNameSet;
     }
     public LocalDate getDate() {
         return date;
     }
     public void setDate(LocalDate dateSet) {
-        dateSet = date;
+        date = dateSet;
     }
     public String getDescription() {
         return description;
     }
     public void setDescription(String descriptionSet) {
-        descriptionSet = description;
+        description = descriptionSet;
     }
     public double getDebit() {
         return debit;
     }
     public void setDebit(double debitSet) {
-        debitSet = debit;
+        debit = debitSet;
     }
     public double getCredit() {
         return credit;
     }
     public void setCredit(double creditSet) {
-        creditSet = credit;
+        credit = creditSet;
     }
     public double getBalance() {
         return balance;
     }
     public void setBalance(double balanceSet) {
-        balanceSet = balance;
+        balance = balanceSet;
     }
     public String getPostReference() {
         return postReference;
     }
     public void setPostReference(String postReferenceSet) {
-        postReferenceSet = postReference;
+        postReference = postReferenceSet;
     }
 }

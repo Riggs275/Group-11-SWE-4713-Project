@@ -1,6 +1,6 @@
 package com.accountingAPI.accountingSoftware.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -35,36 +35,36 @@ public class FinancialStatement {
         return statementId;
     }
     public void setStatementId(int statementIdSet) {
-        statementIdSet = statementId;
+        statementId = statementIdSet;
     }
     public String getType() {
         return type;
     }
     public void setType(String typeSet) {
-        typeSet = type;
+        type = typeSet;
     }
     public LocalDate getFromDate() {
         return fromDate;
     }
     public void setFromDate(LocalDate date) {
-        date = fromDate;
+        fromDate = date;
     }
     public LocalDate getToDate() {
         return toDate;
     }
     public void setToDate(LocalDate date) {
-        date = toDate;
+        toDate = date;
     }
     public String getGeneratedBy() {
         return generatedBy;
     }
     public void setGeneratedBy(String userGenerated) {
-        userGeneratedBy = generatedBy;
+        generatedBy = userGenerated;
     }
     public byte[] getFileData() {
         return fileData;
     }
     public void setFileData(byte[] data) {
-        data = fileData;
+        fileData = data;
     }
 }

@@ -33,7 +33,7 @@ public class ErrorService {
         return ResponseEntity.ok("Error cleared");
     }
     public ResponseEntity<?> getErrorsForEntry(Map<String, String> data) {
-        List<ErrorMessage> list = errRepo.findByErrorId(Integer.parseInt(data.get("entryId")));
+        List<ErrorMessage> list = errRepo.findByEntryId(Integer.parseInt(data.get("entryId")));
         return ResponseEntity.ok(list);
     }
 }

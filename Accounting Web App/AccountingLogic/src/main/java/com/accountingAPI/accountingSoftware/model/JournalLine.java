@@ -1,6 +1,6 @@
 package com.accountingAPI.accountingSoftware.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "journal_lines")
@@ -32,25 +32,25 @@ public class JournalLine {
         return lineId;
     }
     public void setLineId(int lineIdSet) {
-        lineIdSet = lineId;
+        lineId = lineIdSet;
     }
     public String getAccountName() {
         return accountName;
     }
     public void setAccountName(String setName) {
-        setName = accountName;
+        accountName = setName;
     }
     public double getDebit() {
         return debit;
     }
     public void setDebit(double debitSet) {
-        debitSet = debit;
+        debit = debitSet;
     }
     public double getCredit() {
         return credit;
     }
     public void setCredit(double creditSet) {
-        creditSet = credit;
+        credit = creditSet;
     }
     public Attachment getAttachment() {
         return attachment;

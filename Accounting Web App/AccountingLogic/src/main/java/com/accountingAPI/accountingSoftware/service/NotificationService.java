@@ -1,8 +1,13 @@
 package com.accountingAPI.accountingSoftware.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import com.accountingAPI.accountingSoftware.model.Users;
 
 import com.accountingAPI.accountingSoftware.repository.UserRepository;
 
@@ -12,10 +17,20 @@ public class NotificationService {
     @Autowired
     private UserRepository userRepo;
 
-    public ResponseEntity<?> notifyManager(String message) {
-        //
-        // Method will need to find users by userType == "Manager" and notify
-        //
-        return ResponseEntity.ok("Managers notified");
+    @Autowired
+    private JavaMailSender mailSender;
+
+    public void notifyManager(String message, String notificationMessage) {
+        List<Users> managerUsers = userRepo.findByRole("Manager");
+        
+        for (int i = 0; i < managerUsers.size(); i++) {
+            Users managerUser = managerUsers.get(i);
+            SimpleMailMessage notif = new SimpleMailMessage();
+            notif.setTo(managerUser.getEmail());
+            notif.setSubject("Radiant Flow Accounting");
+            notif.setText(notificationMessage);
+
+            mailSender.send(notif);
+        }
     }
 }

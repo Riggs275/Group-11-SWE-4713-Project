@@ -1,6 +1,6 @@
-package com.accountingAPI.accountingSoftware.controllers;
+package com.accountingAPI.accountingSoftware.controller;
 
-import com.accountingAPI.accountingSoftware.services.FinancialStatementService;
+import com.accountingAPI.accountingSoftware.service.FinancialStatementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +40,8 @@ public class FinancialStatementController {
     }
 
     @PostMapping("/email")
-    public ResponseEntity<?> emailStatement(@RequestBody Map<String, String> data) {
-        return financialStatementService.emailStatement(data);
+    public ResponseEntity<?> emailStatement(@RequestBody Map<String, String> data) throws Exception {
+        return (ResponseEntity<?>) financialStatementService.emailStatement(data);
     }
 
     @PostMapping("/download")

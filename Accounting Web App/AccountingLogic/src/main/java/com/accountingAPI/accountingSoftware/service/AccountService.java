@@ -13,8 +13,9 @@ import com.accountingAPI.accountingSoftware.repository.LogRepository;
 import com.accountingAPI.accountingSoftware.repository.AccountRepository;
 import com.accountingAPI.accountingSoftware.model.JournalLine;
 import com.accountingAPI.accountingSoftware.model.Log;
-import com.accountingAPI.accountingSoftware.repository.JournalLineRepository;
+import com.accountingAPI.accountingSoftware.repository.JournalEntryRepository;
 import com.accountingAPI.accountingSoftware.model.Account;
+import com.accountingAPI.accountingSoftware.model.JournalEntry;
 
 @Service
 public class AccountService {
@@ -25,7 +26,7 @@ public class AccountService {
     private LogRepository logRepository;
 
     @Autowired
-    private JournalLineRepository journalLineRepository;
+    private JournalEntryRepository journalLineRepository;
 
 
     // Add new account
@@ -229,29 +230,20 @@ public class AccountService {
                 return ResponseEntity.badRequest().body("Account name is required.");
             }
 
-            List<JournalLine> lines = journalLineRepository.findByAccountName(accountName);
+            List<JournalEntry> lines = journalLineRepository.findByLineAccountName(accountName);
 
             if (lines.isEmpty()) {
                 return ResponseEntity.ok("No ledger entries found for account: " + accountName);
             }
 
-            // Optional: Convert to a DTO or summary object if needed
             return ResponseEntity.ok(lines);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(Map.of("error", "Error retrieving ledger: " + e.getMessage()));
         }
     }
 
-/*
-    // Retrieve all accounts (chart of accounts)
-    public List<Account> getAllAccounts() {
-        return accountRepository.findAll();
+    public Object getAllAccounts() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllAccounts'");
     }
-
-    // Search for accounts by name or number
-    public List<Account> searchAccounts(String query) {
-        // Implement search logic based on accountName and accountNumber
-        return null; // null placeholder
-    }
-*/
 }
