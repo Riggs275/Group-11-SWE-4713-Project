@@ -16,7 +16,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "USERS") // Match your actual database table name
+@Table(name = "USERS")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -54,7 +54,7 @@ public class Users {
     }
 
     @Column(name = "PasswordRef")
-    private Integer passwordRef; // Assuming PasswordRef is an integer reference
+    private Integer passwordRef;
      public Integer getPassRef(){
         return passwordRef;
     }
@@ -138,7 +138,8 @@ public class Users {
 
     @PrePersist
     protected void onCreate() {
-        dateAdded = new Date(); // Automatically set DateAdded when creating a new user
+        // Automatically set DateAdded when creating a new user
+        dateAdded = new Date();
     }
 
 
