@@ -1,0 +1,264 @@
+/* colors.css */
+:root {
+    --primary-color: #2b4f81;
+    --secondary-color: #e0e7ff;
+    --accent-color: #8ecae6;
+    --error-color: #e63946;
+    --success-color: #4caf50;
+    --light-bg: #f8f9fa;
+    --dark-text: #1a1a1a;
+    --light-text: #ffffff;
+  }
+  
+  /* layout.css */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+  }
+  
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* header.css */
+  .header {
+    background-color: var(--primary-color);
+    padding: 1rem;
+    color: var(--light-text);
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  /* buttons.css */
+  .button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 0.9rem;
+  }
+  
+  .button.secondary {
+    background-color: var(--accent-color);
+  }
+  
+  .button:hover {
+    opacity: 0.9;
+  }
+  
+  /* formControls.css */
+  .input-group {
+    margin-bottom: 1rem;
+  }
+  
+  .input-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* errorDisplay.css */
+  .error-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  
+  /* accountPage.css */
+  .account-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .account-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .account-table th, .account-table td {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  /* searchFilter.css */
+  .search-bar {
+    margin: 1rem 0;
+    display: flex;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+  }
+  
+  /* helpOverlay.css */
+  .help-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .help-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 6px;
+    max-width: 600px;
+    width: 90%;
+  }
+  
+  /* journalEntry.css */
+  .journal-form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* journalLine.css */
+  .journal-line-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* ledgerView.css */
+  .ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 1rem;
+  }
+  
+  .ledger-table th, .ledger-table td {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+  }
+  
+  /* ledgerFilter.css */
+  .filter-group {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  /* statusTabs.css */
+  .status-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .tab-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .tab-button.active {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  /* emailModal.css */
+  .email-modal {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+  }
+  
+  /* attachmentUpload.css */
+  .attachment-upload {
+    border: 2px dashed var(--accent-color);
+    padding: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .attachment-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .attachment-item {
+    margin-top: 0.5rem;
+  }
+  
+  /* tooltip.css */
+  .tooltip {
+    position: relative;
+    cursor: help;
+  }
+  
+  .tooltip:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    background-color: #333;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 10;
+  }
+  
+  /* popupCalendar.css */
+  .calendar-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    z-index: 100;
+    border-radius: 4px;
+  }
+  
+  /* tableHover.css */
+  .table-hover tbody tr:hover {
+    background-color: var(--secondary-color);
+  }
+  

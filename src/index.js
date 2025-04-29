@@ -14,6 +14,7 @@ import AdminUsers from './Pages/AdminUsers';
 import AdminRequestPage from './Pages/AdminRequestPage';
 import AddAccount from './Pages/AddAccountAdmin'
 import ModifyAccount from './Pages/ModifyAccount';
+import { ChartOfAccountsPage, JournalEntryPage, LedgerPage } from './Pages/AccountingPages';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -30,6 +31,10 @@ root.render(
                 <Route path="/admin/requests" element={<AdminRequestPage/>}/>
                 <Route path="/admin/addAccountAdmin" element={<AddAccount/>}/>
                 <Route path="/admin/modifyAccountAdmin" element={<ModifyAccount/>}/>
+                <Route path="/accounts" element={<ChartOfAccountsPage />} />
+                <Route path="/journal" element={<JournalEntryPage />} />
+                <Route path="/ledger" element={<LedgerPage />} />
+                <Route path="*" element={<SignIn/>}/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode> 

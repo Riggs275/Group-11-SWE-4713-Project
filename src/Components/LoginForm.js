@@ -21,8 +21,8 @@ export function LoginFom(){
             localStorage.setItem("userType", result.data.userType)
             localStorage.setItem("firstName", result.data.firstName)
             localStorage.setItem("lastName", result.data.lastName)
-                
-            const type = userType.toLowerCase();
+            
+            const type = result.data.userType.toLowerCase();
             navigate('/'+type+'/home', {state: {userID: formData.userID, userType: result.data.userType}})
         }
     };

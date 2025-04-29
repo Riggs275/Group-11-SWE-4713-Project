@@ -1,0 +1,35 @@
+.account-table-wrapper {
+    margin-top: 2rem;
+    overflow-x: auto;
+  }
+  
+  .account-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+  }
+  
+  .account-table th {
+    background-color: var(--primary-color);
+    color: black;
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .account-table td {
+    padding: 0.65rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: black;
+  }
+  
+  .account-table tr:hover {
+    background-color: var(--secondary-color);
+    cursor: pointer;
+  }
+  
+  .account-table td:nth-child(5) {
+    text-align: right;
+  }

@@ -1,0 +1,44 @@
+.ledger-table-wrapper {
+    margin-top: 1.5rem;
+    overflow-x: auto;
+  }
+  
+  .ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+  }
+  
+  .ledger-table th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .ledger-table td {
+    padding: 0.6rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .ledger-table tr:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  .link-button {
+    background: none;
+    color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    padding: 0;
+  }
+  
+  .link-button:hover {
+    color: var(--accent-color);
+  }
+  

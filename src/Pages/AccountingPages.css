@@ -1,0 +1,39 @@
+/* AccountingPages.css */
+
+.form-wrapper {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: black;
+    padding: 0.75rem 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .form-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  
+  .form-header .button.secondary {
+    background-color: transparent;
+    color: black;
+    font-weight: bold;
+    font-size: 1.25rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .form-header .button.secondary:hover {
+    color: red;
+  }
+  
