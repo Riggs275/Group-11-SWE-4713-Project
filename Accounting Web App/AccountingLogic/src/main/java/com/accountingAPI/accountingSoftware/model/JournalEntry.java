@@ -25,6 +25,9 @@ public class JournalEntry {
     @Column(name = "comment")
     private String comment;
 
+    @Column(name = "account_name")
+    private String accountName;
+
     // One JournalEntry contains multiple JournalLine entries
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "journal_entry_id") // foreign key column in journal_lines table
@@ -79,5 +82,11 @@ public class JournalEntry {
     }
     public void setErrorMessages(List<ErrorMessage> error) {
         errorMessages = error;
+    }
+    public String getAccountName() {
+        return accountName;
+    }
+    public void setAccountName(String addName) {
+        accountName = addName;
     }
 }
