@@ -14,7 +14,14 @@ import AdminUsers from './Pages/AdminUsers';
 import AdminRequestPage from './Pages/AdminRequestPage';
 import AddAccount from './Pages/AddAccountAdmin'
 import ModifyAccount from './Pages/ModifyAccount';
-import { ChartOfAccountsPage, JournalEntryPage, LedgerPage } from './Pages/AccountingPages';
+
+/*import UserDashboard from "./Pages/UserDashboard";
+import UserProfile from "./Pages/UserProfile";
+import ChangePassword from "./Pages/ChangePassword";
+import ChartOfAccounts from "./Pages/ChartOfAccounts";
+import AccountDetails from "./Pages/AccountDetails";
+import Ledger from "./Pages/Ledger";
+import FinancialReports from "./Pages/FinancialReports";*/
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -32,10 +39,14 @@ root.render(
                 <Route path="/admin/requests" element={<AdminRequestPage/>}/>
                 <Route path="/admin/addAccountAdmin" element={<AddAccount/>}/>
                 <Route path="/admin/modifyAccountAdmin" element={<ModifyAccount/>}/>
-                <Route path="/accounts" element={<ChartOfAccountsPage />} />
-                <Route path="/journal" element={<JournalEntryPage />} />
-                <Route path="/ledger" element={<LedgerPage />} />
-                <Route path="*" element={<SignIn/>}/>
+
+                /*<Route path="/userdashboard" element={<UserDashboard/>}/>
+                <Route path="/userprofile" element={<UserProfile/>}/>
+                <Route path="/changepassword" element={<ChangePassword/>}/>
+                <Route path="/chartofaccounts" element={<ChartOfAccounts/>}/>
+                <Route path="/accountdetails" element={<AccountDetails/>}/>
+                <Route path="/ledger" element={<Ledger/>}/>
+                <Route path="/financialreports" element={<FinancialReports/>}/>*/
             </Routes>
         </BrowserRouter>
     </React.StrictMode> 
