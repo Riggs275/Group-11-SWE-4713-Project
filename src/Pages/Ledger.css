@@ -1,0 +1,68 @@
+/*.ledger-page {
+  display: flex;
+  height: 100vh;
+}
+
+.ledger-content {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.ledger-filters {
+  margin-bottom: 1rem;
+}
+
+.ledger-filters input {
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.ledger-filters input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ledger-table th,
+.ledger-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem;
+  text-align: left;
+  color: white;
+}
+
+.ledger-table th {
+  background-color: rgba(70, 129, 244, 0.3);
+}
+
+.ledger-table tr:hover {
+  background: rgba(85, 194, 218, 0.3);
+}
+
+.ledger-table button {
+  padding: 0.25rem 0.5rem;
+  background-color: #4681f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ledger-table button:hover {
+  background-color: #55c2da;
+}*/
