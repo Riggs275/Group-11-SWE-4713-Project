@@ -1,0 +1,83 @@
+/*.acct-page {
+  display: flex;
+  height: 100vh;
+}
+
+.acct-content {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.acct-info {
+  margin-bottom: 2rem;
+}
+
+.acct-info label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.acct-info input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.acct-info input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.acct-info button {
+  margin-right: 0.5rem;
+  background-color: #4681f4;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.acct-info button:hover {
+  background-color: #55c2da;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.log-table th,
+.log-table td {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  vertical-align: top;
+  color: white;
+}
+
+.log-table th {
+  background-color: rgba(70, 129, 244, 0.3);
+}
+
+.log-table tr:hover {
+  background: rgba(85, 194, 218, 0.3);
+}
+
+.log-table pre {
+  margin: 0;
+  font-size: 0.85em;
+  white-space: pre-wrap;
+  color: white;
+}*/
