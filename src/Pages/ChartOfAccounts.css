@@ -1,0 +1,56 @@
+/*.coa-page {
+  display: flex;
+  height: 100vh;
+}
+
+.coa-content {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.coa-filters {
+  margin-bottom: 1.5rem;
+}
+
+.coa-filters input {
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  width: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.coa-filters input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.coa-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.coa-table th,
+.coa-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: left;
+  color: white;
+}
+
+.coa-table th {
+  background-color: rgba(70, 129, 244, 0.3);
+}
+
+.coa-table tr:hover {
+  background: rgba(85, 194, 218, 0.3);
+  cursor: pointer;
+}*/
