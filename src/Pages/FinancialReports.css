@@ -1,0 +1,53 @@
+/*.fr-page {
+  display: flex;
+  height: 100vh;
+}
+
+.fr-content {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.fr-controls {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.fr-controls select,
+.fr-controls input,
+.fr-controls button {
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.fr-controls select,
+.fr-controls input {
+  width: 200px;
+}
+
+.fr-controls button {
+  background-color: #4681f4;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fr-controls button:hover {
+  background-color: #55c2da;
+}
+
+.fr-output {
+  background: #272822;
+  color: #f8f8f2;
+  padding: 1rem;
+  overflow: auto;
+  border-radius: 10px;
+}*/
