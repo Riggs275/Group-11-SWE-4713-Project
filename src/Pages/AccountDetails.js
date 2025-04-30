@@ -33,7 +33,7 @@ function AccountDetails() {
             ? <div>
                 <label>Name<input name="name" value={form.name} onChange={handleChange}/></label>
                 <label>Number<input name="number" value={form.number} onChange={handleChange}/></label>
-                {/* add other fields as needed */}
+                {}
                 <button onClick={save}>Save</button>
                 <button onClick={() => setEditing(false)}>Cancel</button>
               </div>
