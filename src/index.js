@@ -40,13 +40,13 @@ root.render(
                 <Route path="/admin/addAccountAdmin" element={<AddAccount/>}/>
                 <Route path="/admin/modifyAccountAdmin" element={<ModifyAccount/>}/>
 
-                /*<Route path="/userdashboard" element={<UserDashboard/>}/>
-                <Route path="/userprofile" element={<UserProfile/>}/>
-                <Route path="/changepassword" element={<ChangePassword/>}/>
-                <Route path="/chartofaccounts" element={<ChartOfAccounts/>}/>
-                <Route path="/accountdetails" element={<AccountDetails/>}/>
-                <Route path="/ledger" element={<Ledger/>}/>
-                <Route path="/financialreports" element={<FinancialReports/>}/>*/
+                //<Route path="/userdashboard" element={<UserDashboard/>}/>
+                //<Route path="/userprofile" element={<UserProfile/>}/>
+                //<Route path="/changepassword" element={<ChangePassword/>}/>
+                //<Route path="/chartofaccounts" element={<ChartOfAccounts/>}/>
+                //<Route path="/accountdetails" element={<AccountDetails/>}/>
+                //<Route path="/ledger" element={<Ledger/>}/>
+                //<Route path="/financialreports" element={<FinancialReports/>}/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode> 
