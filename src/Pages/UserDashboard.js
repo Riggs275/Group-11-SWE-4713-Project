@@ -10,7 +10,7 @@ export default function UserDashboard() {
       <div className="dashboard-content">
         <h1>Welcome, {firstName}!</h1>
         <p>Your role: {userType}</p>
-        {/* Needs to display notifications (password expiry, pending approvals, etc.) */}
+        // Needs to display notifications (password expiry, pending approvals, etc.)
       </div>
     </div>
   );
