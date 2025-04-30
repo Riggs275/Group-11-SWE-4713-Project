@@ -1,0 +1,19 @@
+/*.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  background: linear-gradient(
+    to bottom right,
+    rgb(107, 145, 200),
+    rgb(77, 79, 138),
+    rgb(62, 66, 108),
+    rgb(95, 44, 97)
+  );
+  color: white;
+  overflow: auto;
+  border-radius: 10px;
+}*/
