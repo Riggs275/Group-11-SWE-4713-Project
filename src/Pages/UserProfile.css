@@ -1,8 +1,10 @@
-/*.profile-page {
+/* Layout container for the profile page */
+.profile-page {
   display: flex;
   height: 100vh;
 }
 
+/* Content section with gradient background */
 .profile-content {
   flex: 1;
   padding: 2rem;
@@ -18,12 +20,14 @@
   overflow: auto;
 }
 
+/* Label styling for form elements */
 .profile-content label {
   display: block;
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
 
+/* Input field styles */
 .profile-content input {
   width: 100%;
   padding: 0.5rem;
@@ -31,4 +35,4 @@
   border-radius: 5px;
   border: none;
   font-size: 1rem;
-}*/
+}
