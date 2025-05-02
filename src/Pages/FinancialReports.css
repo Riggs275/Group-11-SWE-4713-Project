@@ -1,8 +1,10 @@
-/*.fr-page {
+/* Layout container for the FR page */
+.fr-page {
   display: flex;
   height: 100vh;
 }
 
+/* Content block with subtle background */
 .fr-content {
   flex: 1;
   padding: 2rem;
@@ -12,12 +14,14 @@
   border-radius: 10px;
 }
 
+/* Controls section with spacing and alignment */
 .fr-controls {
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
 }
 
+/* Input, select, and button controls with consistent styling */
 .fr-controls select,
 .fr-controls input,
 .fr-controls button {
@@ -29,11 +33,13 @@
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
+/* Control width for select and input */
 .fr-controls select,
 .fr-controls input {
   width: 200px;
 }
 
+/* Button styles with hover effect */
 .fr-controls button {
   background-color: #4681f4;
   cursor: pointer;
@@ -44,10 +50,11 @@
   background-color: #55c2da;
 }
 
+/* Output section with dark theme */
 .fr-output {
   background: #272822;
   color: #f8f8f2;
   padding: 1rem;
   overflow: auto;
   border-radius: 10px;
-}*/
+}
