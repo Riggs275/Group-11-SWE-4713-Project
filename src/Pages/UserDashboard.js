@@ -1,16 +1,17 @@
-/*import React from 'react';
+import React from 'react';
 import './UserDashboard.css';
 
 export default function UserDashboard() {
+  // Fetch user info from localStorage
   const firstName = localStorage.getItem('firstName') || 'User';
-  const userType  = localStorage.getItem('userType')  || 'guest';
+  const userType = localStorage.getItem('userType') || 'guest'; // fallback for edge case
 
   return (
     <div className="dashboard">
       <div className="dashboard-content">
-        <h1>Welcome, {firstName}!</h1>
+        <h1>{`Welcome, ${firstName}!`}</h1>
         <p>Your role: {userType}</p>
       </div>
     </div>
   );
-}*/
+}
