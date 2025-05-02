@@ -1,68 +1,85 @@
-/*.ledger-page {
+/* Basic full-page flex wrapper for the ledger */
+.ledger-page {
   display: flex;
-  height: 100vh;
+  height: 100vh; /* Might adjust later depending on layout */
 }
 
+/* Main content area with some padding and backdrop style */
 .ledger-content {
-  flex: 1;
+  flex-grow: 1;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  overflow: auto;
+  background-color: rgba(255, 255, 255, 0.05); /* semi-transparent white */
+  color: #fff;
+  overflow-y: auto;
   border-radius: 10px;
 }
 
+/* Simple input filters section */
 .ledger-filters {
   margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
+/* Inputs inside the filter area */
 .ledger-filters input {
-  margin-right: 0.5rem;
-  padding: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.15);
-  color: white;
+  margin-right: 0.6rem; /* slightly more space between filters */
+  margin-bottom: 0.5rem; /* makes it wrap nicer on smaller screens */
+  padding: 0.5rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.35); /* slightly lighter border */
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  min-width: 180px; /* Added to keep input width somewhat consistent */
 }
 
 .ledger-filters input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.55); /* softened placeholder text */
 }
 
+/* Ledger table styling */
 .ledger-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.15); /* darkened slightly */
+  border-radius: 8px;
   overflow: hidden;
+  font-size: 0.95rem;
 }
 
+/* Header and cell styles */
 .ledger-table th,
 .ledger-table td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.75rem 1rem;
   text-align: left;
-  color: white;
+  color: #fff;
 }
 
+/* Header row background */
 .ledger-table th {
-  background-color: rgba(70, 129, 244, 0.3);
+  background-color: rgba(70, 129, 244, 0.25);
+  font-weight: 600;
 }
 
+/* Hover state for table rows */
 .ledger-table tr:hover {
-  background: rgba(85, 194, 218, 0.3);
+  background-color: rgba(85, 194, 218, 0.25);
 }
 
+/* Button inside PR cell */
 .ledger-table button {
-  padding: 0.25rem 0.5rem;
-  background-color: #4681f4;
-  color: white;
+  padding: 0.3rem 0.6rem;
+  background: #4681f4;
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.25s ease-in-out;
+  font-size: 0.9rem;
 }
 
+/* Button hover effect */
 .ledger-table button:hover {
-  background-color: #55c2da;
-}*/
+  background: #55c2da;
+}
