@@ -1,42 +1,69 @@
-/*import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { generateReport } from '../Components/api';
 import './FinancialReports.css';
 
 export default function FinancialReports() {
   const [range, setRange] = useState({ from: '', to: '' });
   const [reportType, setReportType] = useState('trial_balance');
-  const [data, setData] = useState(null);
+  const [reportData, setReportData] = useState(null); // Renamed for clarity
 
-  const handleChange = e => {
-    setRange({ ...range, [e.target.name]: e.target.value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setRange(prev => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const loadReport = async () => {
-    const rpt = await generateReport(reportType, range);
-    setData(rpt);
+    try {
+      const result = await generateReport(reportType, range);
+      setReportData(result);
+    } catch (err) {
+      console.error('Error fetching report:', err);
+      setReportData({ error: 'Could not load report. Try again later.' });
+    }
   };
 
   return (
     <div className="fr-page">
       <div className="fr-content">
         <h2>Financial Reports</h2>
+
         <div className="fr-controls">
-          <select value={reportType} onChange={e => setReportType(e.target.value)}>
+          <select
+            value={reportType}
+            onChange={e => setReportType(e.target.value)}
+          >
             <option value="trial_balance">Trial Balance</option>
             <option value="income_statement">Income Statement</option>
             <option value="balance_sheet">Balance Sheet</option>
             <option value="retained_earnings">Retained Earnings</option>
           </select>
-          <input type="date" name="from" value={range.from} onChange={handleChange} />
-          <input type="date" name="to"   value={range.to}   onChange={handleChange} />
+
+          {/* Date range inputs */}
+          <input
+            type="date"
+            name="from"
+            value={range.from}
+            onChange={handleInputChange}
+          />
+          <input
+            type="date"
+            name="to"
+            value={range.to}
+            onChange={handleInputChange}
+          />
+
           <button onClick={loadReport}>Generate</button>
         </div>
-        {data && (
+
+        {reportData && (
           <pre className="fr-output">
-            {JSON.stringify(data, null, 2)}
+            {JSON.stringify(reportData, null, 2)}
           </pre>
         )}
       </div>
     </div>
   );
-}*/
+}
