@@ -1,40 +1,70 @@
-/*import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { changePassword } from '../Components/api';
 import './ChangePassword.css';
 
 export default function ChangePassword() {
-  const [oldPw, setOldPw] = useState('');
-  const [newPw, setNewPw] = useState('');
-  const [error, setError] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const validate = pw => /^(?=^[A-Za-z])(?=.*\d)(?=.*\W).{8,}$/.test(pw);
+  // Password must start with a letter, include a number and symbol, min 8 chars
+  const isValidPassword = (pw) => {
+    return /^(?=^[A-Za-z])(?=.*\d)(?=.*\W).{8,}$/.test(pw);
+  };
 
   const handleSubmit = () => {
-    if (!validate(newPw)) {
-      setError('Password must start with a letter, be at least 8 chars, include a number and special character.');
+    if (!isValidPassword(newPassword)) {
+      setErrorMsg(
+        'Password must start with a letter, be at least 8 characters, and include a number & special character.'
+      );
       return;
     }
-    changePassword({ oldPw, newPw }).then(res => {
-      if (res.success) alert('Password changed');
-      else setError(res.message);
-    });
+
+    // Actually call the API to attempt password change
+    changePassword({ oldPw: oldPassword, newPw: newPassword })
+      .then(res => {
+        if (res.success) {
+          alert('Password changed successfully!');
+          setOldPassword('');
+          setNewPassword('');
+          setErrorMsg('');
+        } else {
+          setErrorMsg(res.message || 'Something went wrong.');
+        }
+      })
+      .catch(err => {
+        setErrorMsg('Unexpected error. Please try again.');
+        console.error(err);
+      });
   };
 
   return (
     <div className="change-pw-page">
       <div className="change-pw-content">
         <h2>Change Password</h2>
-        {error && <div className="error">{error}</div>}
+
+        {errorMsg && <div className="error">{errorMsg}</div>}
+
         <label>
           Old Password
-          <input type="password" value={oldPw} onChange={e => setOldPw(e.target.value)} />
+          <input
+            type="password"
+            value={oldPassword}
+            onChange={e => setOldPassword(e.target.value)}
+          />
         </label>
+
         <label>
           New Password
-          <input type="password" value={newPw} onChange={e => setNewPw(e.target.value)} />
+          <input
+            type="password"
+            value={newPassword}
+            onChange={e => setNewPassword(e.target.value)}
+          />
         </label>
+
         <button onClick={handleSubmit}>Submit</button>
       </div>
     </div>
   );
-}*/
+}
