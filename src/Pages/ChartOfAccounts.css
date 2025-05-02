@@ -1,8 +1,10 @@
-/*.coa-page {
+/* Layout container for the COA page */
+.coa-page {
   display: flex;
   height: 100vh;
 }
 
+/* Content block with a subtle background */
 .coa-content {
   flex: 1;
   padding: 2rem;
@@ -12,10 +14,12 @@
   border-radius: 10px;
 }
 
+/* Filters section with spacing */
 .coa-filters {
   margin-bottom: 1.5rem;
 }
 
+/* Input fields with subtle styling */
 .coa-filters input {
   margin-right: 0.5rem;
   padding: 0.5rem;
@@ -26,10 +30,12 @@
   color: white;
 }
 
+/* Placeholder text color */
 .coa-filters input::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* Table with rounded corners and background */
 .coa-table {
   width: 100%;
   border-collapse: collapse;
@@ -38,6 +44,7 @@
   overflow: hidden;
 }
 
+/* Table cells with padding and subtle borders */
 .coa-table th,
 .coa-table td {
   padding: 0.75rem;
@@ -46,11 +53,13 @@
   color: white;
 }
 
+/* Header row background */
 .coa-table th {
   background-color: rgba(70, 129, 244, 0.3);
 }
 
+/* Hover effect for rows */
 .coa-table tr:hover {
   background: rgba(85, 194, 218, 0.3);
   cursor: pointer;
-}*/
+}
