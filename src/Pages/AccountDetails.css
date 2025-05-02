@@ -1,4 +1,5 @@
-/*.acct-page {
+/* Full-page layout with flexible content pane */
+.acct-page {
   display: flex;
   height: 100vh;
 }
@@ -8,76 +9,94 @@
   padding: 2rem;
   background: rgba(255, 255, 255, 0.05);
   color: white;
-  overflow: auto;
+  overflow-y: auto;
   border-radius: 10px;
 }
 
+/* Main section for account information */
 .acct-info {
   margin-bottom: 2rem;
 }
 
+/* Form labels stacked with spacing */
 .acct-info label {
   display: block;
   margin-bottom: 1rem;
+  font-weight: 500;
 }
 
+/* Inputs: basic styled + dark mode compatible */
 .acct-info input {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   margin-top: 0.25rem;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.15);
   color: white;
+  font-size: 0.95rem;
 }
 
 .acct-info input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.55); /* a little softer */
 }
 
+/* Action buttons under the form */
 .acct-info button {
-  margin-right: 0.5rem;
+  margin-right: 0.6rem;
   background-color: #4681f4;
-  color: white;
+  color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 1rem;
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.25s ease-in-out;
 }
 
+/* Hover color switch for buttons */
 .acct-info button:hover {
   background-color: #55c2da;
+  /* Maybe lighten further? */
 }
 
+/* Table for event logs */
 .log-table {
   width: 100%;
   border-collapse: collapse;
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
 }
 
+/* Table cell styling */
 .log-table th,
 .log-table td {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 0.75rem;
   vertical-align: top;
   color: white;
 }
 
+/* Column header style */
 .log-table th {
   background-color: rgba(70, 129, 244, 0.3);
+  text-align: left;
+  font-weight: 600;
 }
 
+/* Row hover effect */
 .log-table tr:hover {
-  background: rgba(85, 194, 218, 0.3);
+  background: rgba(85, 194, 218, 0.25);
 }
 
+/* Log formatting inside pre blocks */
 .log-table pre {
   margin: 0;
   font-size: 0.85em;
   white-space: pre-wrap;
-  color: white;
-}*/
+  color: #f2f2f2;
+  line-height: 1.4;
+}
