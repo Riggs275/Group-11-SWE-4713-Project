@@ -9,14 +9,6 @@ export function AddAccountForm() {
     const navigate = useNavigate();
     const userID = location.state?.userID || localStorage.getItem("userID"); // Get from state or localStorage
     const userType = localStorage.getItem("userType")
-    if(userType == null){
-        navigate('/signin');
-    }
-    else if(userType !== "Accountant"){
-        navigate('/accountant/home');
-    }else if(userType !== "Manager"){
-        navigate('/manager/home');
-    }
 
     const [formData, setFormData] = useState({
         firstName: "", 
