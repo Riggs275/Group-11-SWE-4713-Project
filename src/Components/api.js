@@ -101,3 +101,83 @@ export const getRequestedUsersTable = (formData) => apiRequest(
     "Couldn't get the requested users"
 );
 
+// FETCH SINGLE ACCOUNT BY ID
+export async function fetchAccountById(id) {
+    return apiRequest(
+        "/fetchAccountById",
+        { id },
+        "Could not fetch account"
+    );
+}
+
+// FETCH EVENT LOG FOR ACCOUNT
+export async function fetchEventLog(accountId) {
+    return apiRequest(
+        "/fetchEventLog",
+        { accountId },
+        "Could not fetch event log"
+    );
+}
+
+// UPDATE ACCOUNT
+export async function updateAccount(data) {
+    return apiRequest(
+        "/updateAccount",
+        data,
+        "Could not update account"
+    );
+}
+
+// CHANGE USER PASSWORD
+export async function changePassword(userID, newPassword) {
+    return apiRequest(
+        "/changePassword",
+        { userID, newPassword },
+        "Could not change password"
+    );
+}
+
+// FETCH ALL ACCOUNTS (Chart of Accounts)
+export async function fetchAccounts() {
+    return apiRequest(
+        "/getAccounts",
+        {},
+        "Could not fetch accounts"
+    );
+}
+
+// GENERATE FINANCIAL REPORT (Dynamic Report Type)
+export async function generateReport(params) {
+    return apiRequest(
+        "/generateReport",
+        params,
+        "Could not generate report"
+    );
+}
+
+// FETCH LEDGER ENTRIES FOR AN ACCOUNT
+export async function fetchLedgerEntries(accountId) {
+    return apiRequest(
+        "/getLedgerEntries",
+        { accountId },
+        "Could not fetch ledger entries"
+    );
+}
+
+// FETCH USER PROFILE
+export async function fetchUserProfile(userID) {
+    return apiRequest(
+        "/getUserProfile",
+        { userID },
+        "Could not fetch user profile"
+    );
+}
+
+// UPDATE USER PROFILE
+export async function updateUserProfile(profileData) {
+    return apiRequest(
+        "/updateUserProfile",
+        profileData,
+        "Could not update user profile"
+    );
+}
