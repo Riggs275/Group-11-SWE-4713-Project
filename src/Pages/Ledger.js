@@ -14,11 +14,11 @@ function Ledger() {
     description: '',
   });
 
-  useEffect(() => {
+  /*useEffect(() => {
     fetchLedgerEntries(accountId).then(data => {
       setEntries(data);
     });
-  }, [accountId]);
+  }, [accountId]);*/
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
