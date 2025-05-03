@@ -2,6 +2,14 @@
 .fr-page {
   display: flex;
   height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    rgb(107, 145, 200),
+    rgb(77, 79, 138),
+    rgb(62, 66, 108),
+    rgb(95, 44, 97)
+  );
+  padding: 1rem;
 }
 
 /* Content block with subtle background */
