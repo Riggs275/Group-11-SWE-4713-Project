@@ -14,11 +14,11 @@ function ChartOfAccounts() {
   const navigate = useNavigate();
 
   // Load accounts once on component mount
-  useEffect(() => {
+  /*useEffect(() => {
     fetchAccounts().then(data => {
       setAccounts(data);
     });
-  }, []);
+  }, []);*/
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
